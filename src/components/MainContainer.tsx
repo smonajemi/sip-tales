@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MainContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode; // Make children optional
   title: string;
 }
 
