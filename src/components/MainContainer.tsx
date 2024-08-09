@@ -1,16 +1,26 @@
 import React from 'react';
+import { Box, Typography } from '@mui/material';
 
 interface MainContainerProps {
-  children?: React.ReactNode; // Make children optional
+  children?: React.ReactNode; 
   title: string;
 }
 
 const MainContainer: React.FC<MainContainerProps> = ({ children, title }) => {
   return (
-    <div style={{ padding: '20px', border: '1px solid #ddd' }}>
-      <h1>{title}</h1>
-      <div>{children}</div>
-    </div>
+    <Box
+      sx={{
+        padding: '20px',
+        border: '1px solid #ddd',
+        borderRadius: '4px', 
+        backgroundColor: '#fff' 
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        {title}
+      </Typography>
+      <Box>{children}</Box>
+    </Box>
   );
 };
 

@@ -1,14 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useCocktailApi } from '../hooks/useCocktailApi';
 import { Cocktail } from '../../types/cocktail.types';
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+  Alert,
+  Divider
+} from '@mui/material';
 
 const CocktailList: React.FC = () => {
   const { fetchCocktailByName } = useCocktailApi();
   const [cocktail, setCocktail] = useState<Cocktail | null>(null);
-  const [loading, setLoading] = useState<boolean>(false); // Start with false
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [cocktailName, setCocktailName] = useState<string>('Margarita');
+  const [cocktailName, setCocktailName] = useState<string>('');
+  const [hasFetched, setHasFetched] = useState<boolean>(false);
 
   const capitalize = (text: string | undefined): string => {
     if (!text) return '';
@@ -19,10 +29,10 @@ const CocktailList: React.FC = () => {
     debounce(async (name: string) => {
       setLoading(true);
       setError(null);
-  
+
       try {
         const data = await fetchCocktailByName(name);
-  
+
         if (Array.isArray(data) && data.length > 0) {
           setCocktail(data[0]); // Assuming `data` is an array
         } else {
@@ -33,38 +43,72 @@ const CocktailList: React.FC = () => {
         setError('Failed to fetch cocktail');
       } finally {
         setLoading(false);
+        setHasFetched(true); // Mark that data has been fetched
       }
-    }, 500), // Debounce delay of 500ms
-    [] // No dependencies if you want it to be created once
+    }, 500),
+    [fetchCocktailByName]
   );
-  
+
   const handleSearchClick = () => {
     fetchCocktailData(cocktailName);
   };
 
   return (
-    <div>
-      <h1>Cocktail Details</h1>
-      <div>
-      {loading ? <p>Loading...</p> : 
-        <><p><strong>Name:</strong> {capitalize(cocktail?.name)}</p>
-        <p><strong>Ingredients:</strong> {cocktail?.ingredients}</p>
-        <p><strong>Instructions:</strong> {cocktail?.instructions}</p></>
-      }
-      </div>
-      {/* Input to change cocktail name */}
-      <input 
-        type="text" 
-        value={cocktailName} 
-        onChange={(e) => setCocktailName(e.target.value)} 
+    <Box p={2}>
+      <Box>
+        <Typography variant="h5" gutterBottom>
+          Cocktail Details
+        </Typography>
+        <Divider sx={{ margin: '15px 0px 30px 0px', borderColor: 'text.primary', borderWidth: .5 }} />
+      </Box>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Box>
+          {cocktail ? (
+            <Box mb={2}>
+              <Typography variant="body1">
+                <Typography component="span" fontWeight="bold">
+                  Name:
+                </Typography>{' '}
+                {capitalize(cocktail.name)}
+              </Typography>
+              <Typography variant="body1">
+                <Typography component="span" fontWeight="bold">
+                  Ingredients:
+                </Typography>{' '}
+                {cocktail.ingredients}
+              </Typography>
+              <Typography variant="body1">
+                <Typography component="span" fontWeight="bold">
+                  Instructions:
+                </Typography>{' '}
+                {cocktail.instructions}
+              </Typography>
+            </Box>
+          ) : (
+            hasFetched && !error && <Typography variant="body1">No cocktails in sight—guess we're on a dry spell!</Typography>
+          )}
+        </Box>
+      )}
+      <TextField
+        label="Cocktail Name"
+        variant="outlined"
+        value={cocktailName}
+        onChange={(e) => setCocktailName(e.target.value)}
+        fullWidth
+        margin="normal"
       />
-      {/* Button to trigger search */}
-      <button onClick={handleSearchClick}>Search</button>
-
-      {/* Conditional rendering for loading and error states */}
-      {error && <p>{error}</p>}
-      {!loading && !error && !cocktail && <p>No cocktail found.</p>}
-    </div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSearchClick}
+        sx={{ mt: 2 }}
+      >
+        Search
+      </Button>
+      {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+    </Box>
   );
 };
 
