@@ -3,14 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import routes from './config/routes';
 import { ThemeProvider, createTheme, Container } from '@mui/material';
 import { CssBaseline } from '@mui/material';
-
-// Create a Material-UI theme
-const theme = createTheme({
-  typography: {
-    fontFamily: 'Roboto, Arial, sans-serif',
-  },
- 
-});
+import theme from '../src/theme/styles'
 
 function App() {
   return (

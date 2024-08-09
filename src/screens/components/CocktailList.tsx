@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useCocktailApi } from '../hooks/useCocktailApi';
 import { Cocktail } from '../../types/cocktail.types';
@@ -11,6 +11,7 @@ import {
   Alert,
   Divider
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const CocktailList: React.FC = () => {
   const { fetchCocktailByName } = useCocktailApi();
@@ -19,6 +20,7 @@ const CocktailList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [cocktailName, setCocktailName] = useState<string>('');
   const [hasFetched, setHasFetched] = useState<boolean>(false);
+  const theme = useTheme();
 
   const capitalize = (text: string | undefined): string => {
     if (!text) return '';
@@ -87,7 +89,7 @@ const CocktailList: React.FC = () => {
               </Typography>
             </Box>
           ) : (
-            hasFetched && !error && <Typography variant="body1">No cocktails in sight—guess we're on a dry spell!</Typography>
+            hasFetched && !error && <Typography variant="body1"style={{ color: theme.palette.error.main }}>No cocktails in sight—guess we're on a dry spell!</Typography>
           )}
         </Box>
       )}
