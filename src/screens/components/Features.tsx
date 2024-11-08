@@ -33,9 +33,9 @@ const items = [
   },
   {
     icon: <DevicesRoundedIcon />,
-    title: 'Cross-Platform Access',
+    title: 'Cocktail History & Storytelling',
     description:
-      'Access Sip&Tales from any device – whether you’re on your phone, tablet, or desktop – perfect for any moment you crave a cocktail.',
+      'Discover the stories behind your favorite cocktails with Sip&Tales. Learn the history, legends, and interesting facts about each drink to make your bartending experience even more enjoyable.',
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/devices-light.png")`,
     imageDark: `url(${featuredImage03})`,
   },
@@ -157,11 +157,11 @@ const Features: React.FC = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
+          sx={{ color: '#9E5B40', mb: { xs: 2, sm: 4 } }}
         >
-          Provide a brief overview of the key features of the product. For example,
-          you could list the number of features, their types or benefits, and
-          add-ons.
+         Sip&Tales offers a variety of key features including a comprehensive cocktail search, personalized bartender tips, cocktail history and storytelling, 
+         cross-platform accessibility, customizable recipes, user reviews, interactive shopping lists, 
+         and premium add-ons, all designed to enhance your mixology experience and make every drink memorable.
         </Typography>
       </Box>
       <Box
@@ -218,8 +218,8 @@ const Features: React.FC = () => {
                   ]}
                 >
                   {icon}
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2">{description}</Typography>
+                  <Typography variant="h6" color="#D87A3D">{title}</Typography>
+                  <Typography variant="body2" color='#9E5B40'>{description}</Typography>
                 </Box>
               </Box>
             ))}

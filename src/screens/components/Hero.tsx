@@ -131,7 +131,7 @@ const Hero = () => {
                 fontSize: 'inherit',
                 color: theme.palette.primary.main,
                 ...(theme.palette.mode === 'dark' && {
-                  color: theme.palette.primary.light,
+                  color: '#C68943',
                 }),
               })}
             >
@@ -141,7 +141,7 @@ const Hero = () => {
           <Typography
             sx={{
               textAlign: 'center',
-              color: 'text.secondary',
+              color: '#D87A3D',
               width: { sm: '100%', md: '80%' },
             }}
           >
@@ -209,7 +209,7 @@ const Hero = () => {
                 </Box>
               ) : (
                 hasFetched && !error && (
-                  <Typography variant="body1" style={{ color: theme.palette.text.primary }}>
+                  <Typography variant="body1" style={{ color: '#9E5B40' }}>
                     No cocktails in sight — guess we're on a dry spell!
                   </Typography>
                 )
