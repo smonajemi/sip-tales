@@ -7,11 +7,7 @@ import ColorModeIconDropdown from './ColorModeIconDropdown';
 import { AnyPtrRecord } from 'dns';
 import logoPic from '../../images/logo-tran.png'
 
-const Logo = styled('img')({
-  width: '10%',
-  height: 'auto',
-  cursor: 'pointer',
-});
+
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -29,16 +25,26 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: '8px 12px',
 }));
 
-interface NavBarProps {}
+interface NavBarProps {
+  isDevice: boolean
+}
 
-const NavBar: React.FC<NavBarProps> = () => {
+
+
+const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
   const [open, setOpen] = React.useState(false);
-
+  const Logo = styled('img')({
+    width: isDevice ? '14vw' : '5vw',
+    height: 'auto',
+    cursor: 'pointer',
+  });
+  
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
   return (
+    
     <AppBar
       position="fixed"
       enableColorOnDark
@@ -52,14 +58,12 @@ const NavBar: React.FC<NavBarProps> = () => {
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-              <Logo src={logoPic} />
+            <Logo src={logoPic} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small">Features</Button>
               <Button variant="text" color="info" size="small">Testimonials</Button>
               <Button variant="text" color="info" size="small">Highlights</Button>
               <Button variant="text" color="info" size="small">Pricing</Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>FAQ</Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>Blog</Button>
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>

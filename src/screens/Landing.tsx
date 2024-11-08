@@ -11,7 +11,7 @@ import Highlights from './components/Highlights';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import AppTheme from '../theme/AppTheme';
-// import ToggleCustomTheme from './components/ToggleCustomTheme';
+import { useResponsiveness } from '../components/hooks/useResponsiveness';
 
 interface LandingPageProps {
   mode: PaletteMode;
@@ -20,24 +20,28 @@ interface LandingPageProps {
   showCustomTheme: boolean;
 }
 
-const LandingPage = ({
+const LandingPage: React.FC<LandingPageProps> = ({
   mode,
   toggleColorMode,
   toggleCustomTheme,
   showCustomTheme,
-}: LandingPageProps) => (
-  <AppTheme>
-    <CssBaseline enableColorScheme />
-    <NavBar  />
-    <Hero />
-  <div>
-  <Features />
-    <Testimonials />
-    <Highlights />
-    <Pricing />
-    <Footer />
-  </div>
-  </AppTheme>
-);
+}) => {
+  const { isDevice } = useResponsiveness();
+
+  return (
+    <AppTheme>
+      <CssBaseline enableColorScheme />
+      <NavBar isDevice={isDevice} />
+      <Hero />
+      <Box>
+        <Features />
+        <Testimonials />
+        <Highlights />
+        <Pricing />
+        <Footer />
+      </Box>
+    </AppTheme>
+  );
+};
 
 export default LandingPage;
