@@ -13,7 +13,7 @@ const MainContainer: React.FC<MainContainerProps> = ({ children, title }) => {
         padding: '20px',
         border: '1px solid #ddd',
         borderRadius: '4px', 
-        backgroundColor: '#fff',
+        backgroundColor: 'red',
       }}
     >
       <Typography variant="h4" gutterBottom>

@@ -89,7 +89,7 @@ const CocktailList: React.FC = () => {
               </Typography>
             </Box>
           ) : (
-            hasFetched && !error && <Typography variant="body1"style={{ color: theme.palette.error.main }}>No cocktails in sight—guess we're on a dry spell!</Typography>
+            hasFetched && !error && <Typography variant="body1"style={{ color: theme.palette.error.main }}>No cocktails in sight — guess we're on a dry spell!</Typography>
           )}
         </Box>
       )}

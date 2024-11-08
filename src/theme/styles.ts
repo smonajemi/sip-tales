@@ -2,26 +2,15 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    // primary: {
-    //   main: '#300145', // Deep Purple
-    //   contrastText: '#bca52b', // Light Gold (for contrast)
-    // },
-    // secondary: {
-    //   main: '#8f7507', // Gold Yellow
-    //   contrastText: '#5a2d7a', // Lavender (for contrast)
-    // },
-    // background: {
-    //   default: '#f3e5f5', // Much lighter purple
-    //   paper: '#9c7a1c', // Soft Brown for paper elements
-    // },
-    // text: {
-    //   primary: '#543348', // Dusty Rose
-    //   secondary: '#7a4a64', // Rose Pink (for secondary text)
-    // },
-    // warning: {
-    //   main: '#e0d49a', // Existing warning color
-    //   contrastText: '#4d006a', // Plum (for contrast on warning elements)
-    // },
+    mode: 'dark', // Activate dark mode
+    background: {
+      default: '#121212', // Customize the background color for dark mode
+    },
+    primary: {
+      light: '#C68642',  // Set #C68642 as the primary light color
+      main: '#C68642',   // Optionally, set it as the main color too, if you want it across all components
+      dark: '#8F5028',
+    },
     error: {
       main: '#330049', // Dark Magenta (for error states)
     },
