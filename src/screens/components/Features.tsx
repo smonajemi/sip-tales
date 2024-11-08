@@ -10,34 +10,37 @@ import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 
-import featuredImage from '../../images/pic01.png'
+import featuredImage01 from '../../images/bar02.jpg'
+import featuredImage02 from '../../images/bar03.jpg'
+import featuredImage03 from '../../images/bar04.jpg'
 
 const items = [
   {
     icon: <ViewQuiltRoundedIcon />,
-    title: 'Dashboard',
+    title: 'Recipe Search & Discovery',
     description:
-      'This item could provide a snapshot of the most important metrics or data points related to the product.',
+      'Discover a wide range of cocktail recipes, complete with detailed history and unique bartender tips that bring your drinks to life.',
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/dash-light.png")`,
-    imageDark: `url(${featuredImage})`,
+    imageDark: `url(${featuredImage01})`,
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
-    title: 'Mobile integration',
+    title: 'Personalized Bartender Tips',
     description:
-      'This item could provide information about the mobile app version of the product.',
+      'Learn cocktail crafting secrets from real bartenders, including measurements, techniques, and ingredient swaps for a professional touch.',
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/mobile-light.png")`,
-    imageDark: `url(${featuredImage})`,
+    imageDark: `url(${featuredImage02})`,
   },
   {
     icon: <DevicesRoundedIcon />,
-    title: 'Available on all platforms',
+    title: 'Cross-Platform Access',
     description:
-      'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
+      'Access Sip&Tales from any device – whether you’re on your phone, tablet, or desktop – perfect for any moment you crave a cocktail.',
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/devices-light.png")`,
-    imageDark: `url(${featuredImage})`,
+    imageDark: `url(${featuredImage03})`,
   },
 ];
+
 
 interface ChipProps {
   selected?: boolean;
@@ -248,14 +251,16 @@ const Features: React.FC = () => {
               sx={(theme) => ({
                 m: 'auto',
                 width: 420,
-                height: 500,
-                backgroundSize: 'contain',
+                height: 400,
+                backgroundSize: 'cover',
                 backgroundImage: 'var(--items-imageLight)',
                 ...theme.applyStyles('dark', {
                   backgroundImage: 'var(--items-imageDark)',
+                  
                 }),
                 '--items-imageLight': items[selectedItemIndex]?.imageLight ?? '',
                 '--items-imageDark': items[selectedItemIndex]?.imageDark ?? '',
+                
               })}
             />
 

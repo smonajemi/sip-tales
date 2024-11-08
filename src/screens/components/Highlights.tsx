@@ -5,45 +5,39 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import {ThumbUpAltRounded as ThumbUpAltRoundedIcon, SupportAgentRounded as SupportAgentRoundedIcon, AutoFixHighOutlined as AutoFixHighRoundedIcon, ConstructionRounded as ConstructionRoundedIcon, QueryStatsRounded as QueryStatsRoundedIcon, SettingsSuggestRounded as SettingsSuggestRoundedIcon} from '@mui/icons-material';
+import {SearchRounded as SearchRoundedIcon, HistoryEduRounded as HistoryEduRoundedIcon, LocalBarRounded as LocalBarRoundedIcon, SettingsSuggestRounded as SettingsSuggestRoundedIcon, SupportAgentRounded as SupportAgentRoundedIcon, PrecisionManufacturingRounded as PrecisionManufacturingRoundedIcon} from '@mui/icons-material';
 
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
-    description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+    icon: <SearchRoundedIcon fontSize="large" color="primary" />,
+    title: 'Explore Recipes',
+    description: 'Discover unique cocktails and classic drinks to suit every taste. Search by ingredient, flavor, or style to find your next favorite.',
   },
   {
-    icon: <ConstructionRoundedIcon />,
-    title: 'Built to last',
-    description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+    icon: <HistoryEduRoundedIcon fontSize="large" color="primary" />,
+    title: 'Learn the History',
+    description: 'Each cocktail comes with a story. Read about the origins and historical journey of each drink, adding a richer taste to every sip.',
   },
   {
-    icon: <ThumbUpAltRoundedIcon />,
-    title: 'Great user experience',
-    description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+    icon: <LocalBarRoundedIcon fontSize="large" color="primary" />,
+    title: 'Bartender Expertise',
+    description: 'Get tips from real bartenders. Our recipes include authentic techniques and measurements to help you mix drinks like a pro.',
   },
   {
-    icon: <AutoFixHighRoundedIcon />,
-    title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+    icon: <SettingsSuggestRoundedIcon fontSize="large" color="primary" />,
+    title: 'Adaptable Experience',
+    description: 'Whether you’re new or a seasoned enthusiast, *Sip&Tales* adapts to your level, making cocktail crafting easy and enjoyable.',
   },
   {
-    icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
-    description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+    icon: <SupportAgentRoundedIcon fontSize="large" color="primary" />,
+    title: 'Reliable Support',
+    description: 'Our support team is here to help you with any questions, whether about cocktails, mixology techniques, or app functionality.',
   },
   {
-    icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
-    description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+    icon: <PrecisionManufacturingRoundedIcon fontSize="large" color="primary" />,
+    title: 'Precision in Every Detail',
+    description: 'Each recipe is crafted with precision, ensuring that every measure, mix, and garnish is just right for a perfect drink every time.',
   },
 ];
 

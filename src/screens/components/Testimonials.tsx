@@ -2,51 +2,60 @@ import * as React from 'react';
 
 import { Box, Container, useTheme } from '@mui/system';
 import { Avatar, Typography, Grid, Card, CardContent, CardHeader } from '@mui/material';
+import alexaLee from '../../images/characters/alexaLee.png'
+import jordanKim from '../../images/characters/jordanKim.png'
+import taylorCruz from '../../images/characters/taylorCruz.png'
+import morganBlake from '../../images/characters/morganBlake.png'
+import chrisCrate from '../../images/characters/chrisCrate.png'
+import samParker from '../../images/characters/samParker.png'
+
+
 
 const userTestimonials = [
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
-    name: 'Remy Sharp',
-    occupation: 'Senior Engineer',
+    avatar: <Avatar alt="Alexa Lee" src={alexaLee}  sx={{ width: 50, height: 50 }}/>,
+    name: 'Alexa Lee',
+    occupation: 'Mixology Enthusiast',
     testimonial:
-      "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
+      "Sip&Tales helped me make a killer Negroni on a first date, and it sparked the perfect conversation! The app’s bartender tips made me feel like a pro – safe to say, it was a hit!",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
-    name: 'Travis Howard',
-    occupation: 'Lead Product Designer',
+    avatar: <Avatar alt="Jordan Kim" src={jordanKim} sx={{ width: 50, height: 50 }}/>,
+    name: 'Jordan Kim',
+    occupation: 'Cocktail Connoisseur',
     testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
+      "Thanks to Sip&Tales, I nailed the art of the Old Fashioned just in time for a house party. Not only did I impress everyone, but let’s just say my date was more than impressed by my mixology skills!",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
-    name: 'Cindy Baker',
-    occupation: 'CTO',
+    avatar: <Avatar alt="Taylor Cruz" src={taylorCruz} sx={{ width: 50, height: 50 }}/>,
+    name: 'Taylor Cruz',
+    occupation: 'Social Butterfly',
     testimonial:
-      'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
+      "This app has been a game-changer! I learned how to make drinks with a history that adds charm and intrigue – it’s been a perfect icebreaker on so many nights out.",
   },
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
-    name: 'Julia Stewart',
-    occupation: 'Senior Engineer',
+    avatar: <Avatar alt="Morgan Blake" src={morganBlake} sx={{ width: 50, height: 50 }}/>,
+    name: 'Morgan Blake',
+    occupation: 'Life of the Party',
     testimonial:
-      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
+      "Sip&Tales helped me level up my cocktail game. I’m now known for my drinks and stories behind each one – my friends can’t get enough, and neither can my new special someone!",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
-    name: 'John Smith',
-    occupation: 'Product Designer',
+    avatar: <Avatar alt="Chris Crate" src={chrisCrate} sx={{ width: 50, height: 50 }}/>,
+    name: 'Chris Crate',
+    occupation: 'Weekend Mixologist',
     testimonial:
-      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
+      "I started using Sip&Tales to impress friends, but it’s also made date nights way more exciting. Learning cocktails with real bartender advice is like having a cheat code for great nights.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
-    name: 'Daniel Wolf',
-    occupation: 'CDO',
+    avatar: <Avatar alt="Sam Parker" src={samParker} sx={{ width: 50, height: 50 }}/>,
+    name: 'Sam Parker',
+    occupation: 'Home Bar Aficionado',
     testimonial:
-      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
+      "Sip&Tales has turned my place into the go-to hangout spot. The recipes are spot-on, and every gathering ends with people raving about my bartending skills. 10/10 – would recommend!",
   },
 ];
+
 
 const whiteLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
