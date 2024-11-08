@@ -71,7 +71,7 @@ const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
             <Button color="primary" variant="text" size="small" 
             onClick={() => redirectTo('/signin')}> Sign in</Button>
-            <Button color="primary" variant="contained" size="small">Sign up</Button>
+            <Button color="primary" variant="contained" size="small" onClick={() => redirectTo('/signup')}>Sign up</Button>
             {/* <ColorModeIconDropdown /> */}
 
           </Box>
