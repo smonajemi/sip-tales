@@ -160,7 +160,7 @@ const SignInCard = () => {
           Don&apos;t have an account?{' '}
           <span>
             <Link
-              href="/material-ui/getting-started/templates/sign-in/"
+              href="/signup"
               variant="body2"
               sx={{ alignSelf: 'center' }}
             >
