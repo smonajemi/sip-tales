@@ -209,7 +209,7 @@ const Hero = () => {
                 </Box>
               ) : (
                 hasFetched && !error && (
-                  <Typography variant="body1" style={{ color: '#9E5B40' }}>
+                  <Typography variant="body1" style={{ color: '#C68943' }}>
                     No cocktails in sight — guess we're on a dry spell!
                   </Typography>
                 )

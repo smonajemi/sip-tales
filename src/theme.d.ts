@@ -1,4 +1,3 @@
-// src/theme.d.ts
 import { Theme as MuiTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
@@ -13,6 +12,7 @@ declare module '@mui/material/styles' {
         text: {
           primary: string;
           secondary: string;
+          title: string;   // Added title color
         };
         primary: {
           main: string;
@@ -26,6 +26,7 @@ declare module '@mui/material/styles' {
         };
         grey: Record<string, string>;
         defaultChannel: string;  // Added defaultChannel
+        customColor: string;      // Added custom color
       };
       shape: {
         borderRadius: number;
@@ -46,6 +47,7 @@ declare module '@mui/material/styles' {
         text?: {
           primary?: string;
           secondary?: string;
+          title?: string;   // Added title color
         };
         primary?: {
           main?: string;
@@ -59,6 +61,7 @@ declare module '@mui/material/styles' {
         };
         grey?: Record<string, string>;
         defaultChannel?: string;  // Added defaultChannel
+        customColor?: string;      // Added custom color
       };
       shape?: {
         borderRadius?: number;

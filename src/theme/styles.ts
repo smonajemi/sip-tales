@@ -4,25 +4,42 @@ const theme = createTheme({
   palette: {
     mode: 'dark', // Activate dark mode
     background: {
-      default: '#121212', // Customize the background color for dark mode
+      default: '#121212', 
     },
     primary: {
-      light: '#C68642',  // Set #C68642 as the primary light color
-      main: '#C68642',   // Optionally, set it as the main color too, if you want it across all components
+      light: '#C68642', 
+      main: '#C68642',   
       dark: '#8F5028',
     },
     error: {
-      main: '#330049', // Dark Magenta (for error states)
+      main: '#330049', 
     },
     success: {
-      main: '#8f7507', // Reusing Gold Yellow for success
+      main: '#8f7507', 
     },
     info: {
-      main: '#5a2d7a', // Lavender (for informational elements)
+      main: '#5a2d7a',
     },
   },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',
+    h1: {
+      color: 'yellow', 
+    },
+    h2: {
+      color: 'red', 
+    },
+    // body1: {
+    //   color: '#D87A3D', 
+    // },
+    body2: {
+      color: "#9E5B40"
+    },
+    h6: {
+      color: "#D87A3D"
+    }
+
+
   },
 });
 

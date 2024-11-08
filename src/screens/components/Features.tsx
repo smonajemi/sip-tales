@@ -157,7 +157,7 @@ const Features: React.FC = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ color: '#9E5B40', mb: { xs: 2, sm: 4 } }}
+          sx={{ color: 'text.title', mb: { xs: 2, sm: 4 } }}
         >
          Sip&Tales offers a variety of key features including a comprehensive cocktail search, personalized bartender tips, cocktail history and storytelling, 
          cross-platform accessibility, customizable recipes, user reviews, interactive shopping lists, 
@@ -218,8 +218,8 @@ const Features: React.FC = () => {
                   ]}
                 >
                   {icon}
-                  <Typography variant="h6" color="#D87A3D">{title}</Typography>
-                  <Typography variant="body2" color='#9E5B40'>{description}</Typography>
+                  <Typography variant="h6" >{title}</Typography>
+                  <Typography variant="body2">{description}</Typography>
                 </Box>
               </Box>
             ))}
