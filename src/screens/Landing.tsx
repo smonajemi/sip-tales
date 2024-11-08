@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import NavBar from './components/NavBar';
 import MainContainer from '../components/MainContainer';
-import { CssBaseline, PaletteMode } from '@mui/material';
+import { Container, CssBaseline, PaletteMode } from '@mui/material';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
@@ -12,6 +12,8 @@ import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import AppTheme from '../theme/AppTheme';
 import { useResponsiveness } from '../components/hooks/useResponsiveness';
+import CocktailContent from './components/CocktailContent';
+import CocktailBlog from './components/CocktailBlog';
 
 interface LandingPageProps {
   mode: PaletteMode;
@@ -25,21 +27,29 @@ const LandingPage: React.FC<LandingPageProps> = ({
   toggleColorMode,
   toggleCustomTheme,
   showCustomTheme,
+  ...props
 }) => {
   const { isDevice } = useResponsiveness();
 
   return (
-    <AppTheme>
+    <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <NavBar isDevice={isDevice} />
       <Hero />
-      <Box>
+      <Container   
+      maxWidth="lg"
+        component="main"
+        sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}>
+        <CocktailContent />
         <Features />
         <Testimonials />
         <Highlights />
         <Pricing />
+        
+       
+        {/* <CocktailBlog /> */}
         <Footer />
-      </Box>
+      </Container>
     </AppTheme>
   );
 };
