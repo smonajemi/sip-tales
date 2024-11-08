@@ -6,6 +6,7 @@ import { Menu as MenuIcon, CloseRounded as CloseRoundedIcon } from '@mui/icons-m
 import ColorModeIconDropdown from './ColorModeIconDropdown';
 import { AnyPtrRecord } from 'dns';
 import logoPic from '../../images/logo-tran.png'
+import useNav from '../hooks/useNav';
 
 
 
@@ -32,6 +33,7 @@ interface NavBarProps {
 
 
 const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
+  const { redirectTo } = useNav();
   const [open, setOpen] = React.useState(false);
   const Logo = styled('img')({
     width: isDevice ? '14vw' : '5vw',
@@ -67,7 +69,8 @@ const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
-            <Button color="primary" variant="text" size="small">Sign in</Button>
+            <Button color="primary" variant="text" size="small" 
+            onClick={() => redirectTo('/signin')}> Sign in</Button>
             <Button color="primary" variant="contained" size="small">Sign up</Button>
             {/* <ColorModeIconDropdown /> */}
 
