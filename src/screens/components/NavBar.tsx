@@ -8,7 +8,7 @@ import { AnyPtrRecord } from 'dns';
 import logoPic from '../../images/logo-tran.png'
 
 const Logo = styled('img')({
-  width: '75px',
+  width: '10%',
   height: 'auto',
   cursor: 'pointer',
 });
