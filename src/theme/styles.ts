@@ -27,7 +27,7 @@ const theme = createTheme({
       color: 'yellow', 
     },
     h2: {
-      color: 'red', 
+      color: '#8f7507', 
     },
     // body1: {
     //   color: '#D87A3D', 
