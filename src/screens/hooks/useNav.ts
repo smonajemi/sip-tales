@@ -2,11 +2,11 @@
 import { useNavigate } from 'react-router-dom';
 
 const useNav = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const redirectTo = (path: string) => {
-  //   navigate(path);
-  // };
+  const navigateTo = (path: string) => {
+    navigate(path);
+  };
 
   const redirectTo = (path: string) => {
     const clickEvent = new MouseEvent("click", {
@@ -19,6 +19,7 @@ const useNav = () => {
 
   return {
     redirectTo,
+    navigateTo
   } as const;
 };
 
