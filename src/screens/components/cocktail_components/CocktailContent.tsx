@@ -1,13 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { Card, CardContent, Typography, Box, AvatarGroup, Avatar, FormControl, OutlinedInput, InputAdornment, IconButton, Chip, Grid, CardMedia } from '@mui/material';
+import { Card, CardContent, Typography, Box, AvatarGroup, Avatar, FormControl, OutlinedInput, InputAdornment, IconButton, Chip, CardMedia } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import * as React from 'react';
 import {SearchRounded as SearchRoundedIcon} from '@mui/icons-material'
 import useCocktail from './hooks/useCocktail';
 
-
-
-
-const SyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   padding: 0,
@@ -26,7 +24,7 @@ const SyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const SyledCardContent = styled(CardContent)({
+const StyledCardContent = styled(CardContent)({
   display: 'flex',
   flexDirection: 'column',
   gap: 4,
@@ -168,8 +166,7 @@ const CocktailContent: React.FC = () => {
         {cardData.map((card, index) => (
           <Grid
             key={index}
-            item
-            xs={12} sm={6} md={4} xl={4}
+            size={{ xs: 12, sm: 6, md: 4 }}
             onFocus={() => handleFocus(index)}
             onBlur={handleBlur}
             style={{
@@ -179,7 +176,7 @@ const CocktailContent: React.FC = () => {
               paddingBottom: '0 !important',
             }}
           >
-            <SyledCard>
+            <StyledCard>
               <CardMedia
                 component="img"
                 alt={card.title}
@@ -192,7 +189,7 @@ const CocktailContent: React.FC = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               />   
-              <SyledCardContent>
+              <StyledCardContent>
                 <Chip size="small" label={card.tag} sx={(theme) => ({
                   backgroundColor: theme.palette.baseShadow
                 })} />
@@ -200,9 +197,9 @@ const CocktailContent: React.FC = () => {
                 <StyledTypography variant="body2" color="text.secondary">
                   {card.description}
                 </StyledTypography>
-              </SyledCardContent>
+              </StyledCardContent>
               {/* <Author authors={card.authors} /> */}
-            </SyledCard>
+            </StyledCard>
           </Grid>
         ))}
       </Grid>
