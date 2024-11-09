@@ -1,26 +1,26 @@
 import * as React from 'react';
 import { AppBar, Box, Button, Container, Divider, Drawer, MenuItem, IconButton } from '@mui/material';
 import { Menu as MenuIcon, CloseRounded as CloseRoundedIcon } from '@mui/icons-material';
-import logoPic from '../../images/logo-tran.png'
+import logoPic from '../../images/logo-tran.png';
 import useNav from '../hooks/useNav';
 
-
-
-
 interface NavBarProps {
-  isDevice?: boolean
+  isDevice?: boolean;
   handleSmoothScroll: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
+  isLogin?: boolean
 }
 
+const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll, isLogin }) => {
+  const { redirectTo, toggleDrawer, Logo, open, setOpen, StyledToolbar, } = useNav();
+  const buttonItems = ['Features', 'Testimonials', 'Highlights', 'Pricing'];
+  const menuItems = ['Home'];
 
-const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
-  const { redirectTo, toggleDrawer, Logo, open, setOpen, StyledToolbar } = useNav();
-  const buttonItems = [
-    'Features', 'Testimonials', 'Highlights', 'Pricing', 'FAQ', 'Blog'
-  ];
-  const menuItems = [
-    'Home'
-  ];
+  const handleMenuItemClick = (e: React.MouseEvent<HTMLElement> | any, item: string) => {
+    isLogin ? redirectTo('/') : handleSmoothScroll(e, item?.toLowerCase());
+    toggleDrawer(false); 
+    setOpen(false)
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -37,14 +37,13 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Logo src={logoPic} onClick={() => redirectTo('/')} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-
-              {buttonItems.map((item, index) => (
+              {(isLogin ? menuItems : buttonItems).map((item, index) => (
                 <Button
                   variant="text"
                   color="info"
                   size="small"
                   key={index}
-                  onClick={(e: any) => handleSmoothScroll(e, item?.toLowerCase())}
+                  onClick={(e: any) => handleMenuItemClick(e, item)}
                 >
                   {item}
                 </Button>
@@ -52,10 +51,12 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
-            <Button color="primary" variant="text" size="small"
-              onClick={() => redirectTo('/signin')}> Sign in</Button>
-            <Button color="primary" variant="contained" size="small"
-              onClick={() => redirectTo('/signup')}>Sign up</Button>
+            <Button color="primary" variant="text" size="small" onClick={() => redirectTo('/signin')}>
+              Sign in
+            </Button>
+            <Button color="primary" variant="contained" size="small" onClick={() => redirectTo('/signup')}>
+              Sign up
+            </Button>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
@@ -77,17 +78,21 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                {menuItems.map((item, index) => (
-                  <MenuItem key={index} onClick={(e: any) => redirectTo('/')}>
+                {(isLogin ? menuItems : buttonItems).map((item, index) => (
+                  <MenuItem key={index} onClick={(e: any) => handleMenuItemClick(e, item)}>
                     {item}
                   </MenuItem>
                 ))}
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth onClick={() => redirectTo('/signup')}>Sign up</Button>
+                  <Button color="primary" variant="contained" fullWidth onClick={() => redirectTo('/signup')}>
+                    Sign up
+                  </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth onClick={() => redirectTo('/signin')}>Sign in</Button>
+                  <Button color="primary" variant="outlined" fullWidth onClick={() => redirectTo('/signin')}>
+                    Sign in
+                  </Button>
                 </MenuItem>
               </Box>
             </Drawer>
@@ -96,6 +101,6 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
       </Container>
     </AppBar>
   );
-}
+};
 
 export default NavBar;

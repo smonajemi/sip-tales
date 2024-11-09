@@ -33,7 +33,7 @@ const {handleSmoothScroll} = useSmoothScroll()
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll}/>
+      <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll} isLogin={true}/>
       <CustomContainer direction="column" justifyContent="space-between">
         {isSignIn && (  
           <SignInCard

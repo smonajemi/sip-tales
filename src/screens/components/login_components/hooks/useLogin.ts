@@ -18,7 +18,7 @@ const useLogin = () => {
   const { isDevice } = useResponsiveness();
   const isSignIn = window.location.href.includes('signin');
   const isSignUp = window.location.href.includes('signup');
-
+ 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
