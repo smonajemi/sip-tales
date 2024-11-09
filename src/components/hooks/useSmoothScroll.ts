@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 
 const useSmoothScroll = () => {
-  const handleSmoothScroll = (e: MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleSmoothScroll = (e: MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
@@ -9,7 +9,7 @@ const useSmoothScroll = () => {
     }
   };
 
-  return {handleSmoothScroll} as const;
+  return { handleSmoothScroll } as const;
 };
 
 export default useSmoothScroll;

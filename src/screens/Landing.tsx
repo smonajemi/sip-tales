@@ -32,7 +32,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <NavBar isDevice={isDevice} />
+      <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll} />
       <Hero />
       <Container   
       maxWidth="lg"

@@ -8,11 +8,12 @@ import useNav from '../hooks/useNav';
 
 
 interface NavBarProps {
-  isDevice: boolean
+  isDevice?: boolean
+  handleSmoothScroll: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
 }
 
 
-const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
+const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
   const { redirectTo, toggleDrawer, Logo, open, setOpen, StyledToolbar } = useNav();
   return (
     <AppBar
@@ -30,22 +31,51 @@ const NavBar: React.FC<NavBarProps> = ({isDevice}) => {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Logo src={logoPic} onClick={() => redirectTo('/')} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">Features</Button>
-              <Button variant="text" color="info" size="small">Testimonials</Button>
-              <Button variant="text" color="info" size="small">Highlights</Button>
-              <Button variant="text" color="info" size="small">Pricing</Button>
+              <Button
+                variant="text"
+                color="info"
+                size="small"
+                onClick={(e: any) => handleSmoothScroll(e, 'features')}
+              >
+                Features
+              </Button>
+              <Button
+                variant="text"
+                color="info"
+                size="small"
+                onClick={(e: any) => handleSmoothScroll(e, 'testimonials')}
+              >
+                Testimonials
+              </Button>
+              <Button
+                variant="text"
+                color="info"
+                size="small"
+                onClick={(e: any) => handleSmoothScroll(e, 'highlights')}
+              >
+                Highlights
+              </Button>
+              <Button
+                variant="text"
+                color="info"
+                size="small"
+                onClick={(e: any) => handleSmoothScroll(e, 'pricing')}
+              >
+                Pricing
+              </Button>
+
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
-            <Button color="primary" variant="text" size="small" 
-            onClick={() => redirectTo('/signin')}> Sign in</Button>
-            <Button color="primary" variant="contained" size="small" 
-            onClick={() => redirectTo('/signup')}>Sign up</Button>
+            <Button color="primary" variant="text" size="small"
+              onClick={() => redirectTo('/signin')}> Sign in</Button>
+            <Button color="primary" variant="contained" size="small"
+              onClick={() => redirectTo('/signup')}>Sign up</Button>
             {/* <ColorModeIconDropdown /> */}
 
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-          {/* <ColorModeIconDropdown size="medium" /> */}
+            {/* <ColorModeIconDropdown size="medium" /> */}
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>

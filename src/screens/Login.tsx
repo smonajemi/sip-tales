@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import SignInCard from './components/login_components/SignInCard';
 import SignUpCard from './components/login_components/SignUpCard';
 import useLogin from './components/login_components/hooks/useLogin';
+import useSmoothScroll from '../components/hooks/useSmoothScroll';
 
 
 
@@ -27,10 +28,12 @@ const Login = (props: { disableCustomTheme?: boolean }) => {
   CustomContainer
 } = useLogin()
 
+const {handleSmoothScroll} = useSmoothScroll()
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <NavBar isDevice={isDevice} />
+      <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll}/>
       <CustomContainer direction="column" justifyContent="space-between">
         {isSignIn && (  
           <SignInCard
