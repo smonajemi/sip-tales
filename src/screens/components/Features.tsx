@@ -89,7 +89,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         gap: 2,
-        
+        boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
       }}
     >
       <Box sx={{ display: 'flex', gap: 2, overflow: 'auto' }}>
@@ -147,7 +148,7 @@ const Features: React.FC = () => {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 8 }}} >
+    <Container id="features" sx={{ py: { xs: 8, sm: 8 }, }} >
       <Box sx={{ width: { sm: '100%', md: '60%' } }}>
         <Typography
           component="h2"

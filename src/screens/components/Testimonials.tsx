@@ -91,7 +91,7 @@ const Testimonials = () => {
         pt: { xs: 4, sm: 2 },
         pb: { xs: 8, sm: 8 },
         color: 'white',
-        bgcolor: 'grey.800',
+        // bgcolor: 'grey.800',
         borderRadius: '15px',
         position: 'relative',
         display: 'flex',

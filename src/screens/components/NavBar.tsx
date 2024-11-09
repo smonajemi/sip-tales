@@ -15,6 +15,12 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
   const { redirectTo, toggleDrawer, Logo, open, setOpen, StyledToolbar } = useNav();
+  const buttonItems = [
+    'Features', 'Testimonials', 'Highlights', 'Pricing', 'FAQ', 'Blog'
+  ];
+  const menuItems = [
+    'Home'
+  ];
   return (
     <AppBar
       position="fixed"
@@ -31,39 +37,18 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Logo src={logoPic} onClick={() => redirectTo('/')} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={(e: any) => handleSmoothScroll(e, 'features')}
-              >
-                Features
-              </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={(e: any) => handleSmoothScroll(e, 'testimonials')}
-              >
-                Testimonials
-              </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={(e: any) => handleSmoothScroll(e, 'highlights')}
-              >
-                Highlights
-              </Button>
-              <Button
-                variant="text"
-                color="info"
-                size="small"
-                onClick={(e: any) => handleSmoothScroll(e, 'pricing')}
-              >
-                Pricing
-              </Button>
 
+              {buttonItems.map((item, index) => (
+                <Button
+                  variant="text"
+                  color="info"
+                  size="small"
+                  key={index}
+                  onClick={(e: any) => handleSmoothScroll(e, item?.toLowerCase())}
+                >
+                  {item}
+                </Button>
+              ))}
             </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
@@ -71,11 +56,8 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
               onClick={() => redirectTo('/signin')}> Sign in</Button>
             <Button color="primary" variant="contained" size="small"
               onClick={() => redirectTo('/signup')}>Sign up</Button>
-            {/* <ColorModeIconDropdown /> */}
-
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-            {/* <ColorModeIconDropdown size="medium" /> */}
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
@@ -95,12 +77,11 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll }) => {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                {menuItems.map((item, index) => (
+                  <MenuItem key={index} onClick={(e: any) => redirectTo('/')}>
+                    {item}
+                  </MenuItem>
+                ))}
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth onClick={() => redirectTo('/signup')}>Sign up</Button>
