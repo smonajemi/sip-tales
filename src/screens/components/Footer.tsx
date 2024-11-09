@@ -96,21 +96,21 @@ export default function Footer() {
           <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
             Product
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="#features">
             Features
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="#testimonials">
             Testimonials
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="#highlights">
             Highlights
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="#pricing">
             Pricing
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          {/* <Link color="text.secondary" variant="body2" href="#">
             FAQs
-          </Link>
+          </Link> */}
         </Box>
         <Box
           sx={{
@@ -119,17 +119,17 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          {/* <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
             Company
-          </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
+          </Typography> */}
+          <Link variant="body2" href="#about"  sx={{ fontWeight: 'medium' }}>
             About us
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="/careers">
             Careers
           </Link>
           <Link color="text.secondary" variant="body2" href="#">
-            Press
+            Jobs
           </Link>
         </Box>
         <Box
