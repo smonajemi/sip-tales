@@ -12,8 +12,8 @@ const useNav = () => {
   const [open, setOpen] = useState(false);
 
   const Logo = styled('img')({
-    width: isDevice ? '14vw' : '5vw',
-    height: 'auto',
+    width: isDevice ? '10vw' : '5vw',
+    height: isDevice ? '8vw' : '5vw',
     cursor: 'pointer',
   });
 

@@ -25,6 +25,7 @@ interface SignUpCardProps {
   passwordError: boolean;
   passwordErrorMessage: string;
   CustomCard: React.ComponentType<CardProps>;
+
 }
 
 
@@ -38,6 +39,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({
   passwordError,
   passwordErrorMessage,
   CustomCard,
+  
 }) => {
   return (
     <CustomCard variant="outlined">
@@ -59,6 +61,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({
             autoComplete="name"
             name="name"
             required
+            autoFocus
             fullWidth
             id="name"
             placeholder="Jon Snow"

@@ -6,7 +6,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
@@ -18,6 +17,7 @@ import heroImage from '../../images/bar01.jpg';
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import { useCallback } from 'react';
+import CustomLoader from '../../components/CustomLoader';
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
@@ -95,8 +95,8 @@ const Hero = () => {
         backgroundImage:
           'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
         ...(theme.palette.mode === 'dark' && {
-          backgroundImage:
-            'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
+          backgroundImage: 'radial-gradient(ellipse 80% 50% at 50% -10%, hsl(210, 100%, 16%), transparent)',
+           borderRadius: '15px'
         }),
       })}
     >
@@ -184,7 +184,7 @@ const Hero = () => {
           </Stack>
           {/* <Divider sx={{ margin: '15px 0px 30px 0px', borderColor: 'text.primary'}} /> */}
           {loading ? (
-            <CircularProgress />
+            <CustomLoader height={30}/>
           ) : (
             <Box>
               {cocktail ? (
@@ -210,7 +210,7 @@ const Hero = () => {
                 </Box>
               ) : (
                 hasFetched && !error && (
-                  <Typography variant="body1" style={{ color: '#C68943' }}>
+                  <Typography variant="body1" sx={(theme) => ({ color: theme.palette.grey[400] })}>
                     No cocktails in sight — guess we're on a dry spell!
                   </Typography>
                 )

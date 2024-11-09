@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import AppTheme from '../theme/AppTheme';
 import { useResponsiveness } from '../components/hooks/useResponsiveness';
 import CocktailContent from './components/cocktail_components/CocktailContent';
+import useSmoothScroll from '../components/hooks/useSmoothScroll';
 
 interface LandingPageProps {
   mode: PaletteMode;
@@ -26,7 +27,8 @@ const LandingPage: React.FC<LandingPageProps> = ({
   ...props
 }) => {
   const { isDevice } = useResponsiveness();
-
+  const {handleSmoothScroll} = useSmoothScroll();
+  
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -42,7 +44,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
         <Highlights />
         <Pricing />
         {/* <CocktailBlog /> */}
-        <Footer />
+        <Footer handleSmoothScroll={handleSmoothScroll} />
       </Container>
     </AppTheme>
   );

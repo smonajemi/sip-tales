@@ -6,16 +6,18 @@ import Typography from '@mui/material/Typography';
 interface CenteredLoaderProps {
     message?: string; 
     size?: number;  
+    height?: string | number;
+
 }
 
-const CustomLoader: React.FC<CenteredLoaderProps> = ({ message, size = 40 }) => {
+const CustomLoader: React.FC<CenteredLoaderProps> = ({ message, size = 40, height = "100vh" }) => {
     return (
         <Box
             display="flex"
             flexDirection="column" 
             alignItems="center"
             justifyContent="center"
-            height="100vh"
+            height={height}
         >
             <CircularProgress size={size} />
             {message && (

@@ -84,10 +84,12 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
 
   return (
     <Box
+    id ='features'
       sx={{
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         gap: 2,
+        
       }}
     >
       <Box sx={{ display: 'flex', gap: 2, overflow: 'auto' }}>
@@ -145,7 +147,7 @@ const Features: React.FC = () => {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="features" sx={{ py: { xs: 8, sm: 8 }}} >
       <Box sx={{ width: { sm: '100%', md: '60%' } }}>
         <Typography
           component="h2"
@@ -177,6 +179,7 @@ const Features: React.FC = () => {
               display: { xs: 'none', sm: 'flex' },
               flexDirection: 'column',
               gap: 2,
+              boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
               height: '100%',
             }}
           >
@@ -190,7 +193,6 @@ const Features: React.FC = () => {
                     p: 2,
                     height: '100%',
                     width: '100%',
-                    boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
                     '&:hover': {
                       backgroundColor: theme.palette.action.hover, // Direct access to theme.palette
                     },
@@ -212,6 +214,7 @@ const Features: React.FC = () => {
                       textAlign: 'left',
                       textTransform: 'none',
                       color: 'text.secondary',
+                      
                     },
                     selectedItemIndex === index && {
                       color: 'text.primary',
@@ -236,6 +239,8 @@ const Features: React.FC = () => {
             display: { xs: 'none', sm: 'flex' },
             width: { xs: '100%', md: '70%' },
             height: 'var(--items-image-height)',
+            boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
           }}
         >
           <Card
@@ -245,7 +250,6 @@ const Features: React.FC = () => {
               width: '100%',
               display: { xs: 'none', sm: 'flex' },
               pointerEvents: 'none',
-              boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
 
             }}
           >
