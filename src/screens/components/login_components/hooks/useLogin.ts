@@ -15,7 +15,7 @@ const useLogin = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>('');
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState('');
-  const { isDevice } = useResponsiveness();
+  const { isDevice, handleSmoothScroll } = useResponsiveness();
   const isSignIn = window.location.href.includes('signin');
   const isSignUp = window.location.href.includes('signup');
  
@@ -140,7 +140,8 @@ const useLogin = () => {
     isSignIn,
     isSignUp,
     CustomCard,
-    CustomContainer
+    CustomContainer,
+    handleSmoothScroll
   };
 };
 

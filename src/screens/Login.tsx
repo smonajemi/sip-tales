@@ -25,10 +25,9 @@ const Login = (props: { disableCustomTheme?: boolean }) => {
   isSignIn,
   isSignUp,
   CustomCard,
-  CustomContainer
+  CustomContainer,
+  handleSmoothScroll
 } = useLogin()
-
-const {handleSmoothScroll} = useSmoothScroll()
 
   return (
     <AppTheme {...props}>
