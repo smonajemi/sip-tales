@@ -1,8 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import NavBar from './components/NavBar';
-import MainContainer from '../components/MainContainer';
 import { Container, CssBaseline, PaletteMode } from '@mui/material';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -12,8 +9,7 @@ import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import AppTheme from '../theme/AppTheme';
 import { useResponsiveness } from '../components/hooks/useResponsiveness';
-import CocktailContent from './components/CocktailContent';
-import CocktailBlog from './components/CocktailBlog';
+import CocktailContent from './components/cocktail_components/CocktailContent';
 
 interface LandingPageProps {
   mode: PaletteMode;
@@ -45,8 +41,6 @@ const LandingPage: React.FC<LandingPageProps> = ({
         <Testimonials />
         <Highlights />
         <Pricing />
-        
-       
         {/* <CocktailBlog /> */}
         <Footer />
       </Container>

@@ -9,8 +9,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
-        <Container maxWidth="lg">
+      <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL || ""}>
+      <Container maxWidth="lg">
           <Routes>
             {routes.map((route, index) => (
               <Route

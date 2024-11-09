@@ -190,6 +190,7 @@ const Features: React.FC = () => {
                     p: 2,
                     height: '100%',
                     width: '100%',
+                    boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
                     '&:hover': {
                       backgroundColor: theme.palette.action.hover, // Direct access to theme.palette
                     },
@@ -244,6 +245,8 @@ const Features: React.FC = () => {
               width: '100%',
               display: { xs: 'none', sm: 'flex' },
               pointerEvents: 'none',
+              boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
             }}
           >
             <Box
@@ -258,6 +261,7 @@ const Features: React.FC = () => {
                   backgroundImage: 'var(--items-imageDark)',
                   
                 }),
+                
                 '--items-imageLight': items[selectedItemIndex]?.imageLight ?? '',
                 '--items-imageDark': items[selectedItemIndex]?.imageDark ?? '',
                 

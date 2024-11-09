@@ -79,6 +79,7 @@ const Highlights = () => (
         {items.map((item, index) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <Stack
+            
               direction="column"
               component={Card}
               spacing={1}
@@ -89,6 +90,8 @@ const Highlights = () => (
                 height: '100%',
                 borderColor: 'hsla(220, 25%, 25%, 0.3)',
                 backgroundColor: 'grey.800',
+                boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
               }}
             >
               <Box sx={{ opacity: '50%' }}>{item.icon}</Box>

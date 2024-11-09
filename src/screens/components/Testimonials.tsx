@@ -129,6 +129,8 @@ const Testimonials = () => {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 flexGrow: 1,
+                boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
               }}
             >
               <CardContent>
@@ -145,6 +147,7 @@ const Testimonials = () => {
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
+              
                 }}
               >
                 <CardHeader
@@ -152,11 +155,11 @@ const Testimonials = () => {
                   title={testimonial.name}
                   subheader={testimonial.occupation}
                 />
-                <img
+                {/* <img
                   src={logos[index]}
                   alt={`Logo ${index + 1}`}
                   style={logoStyle}
-                />
+                /> */}
               </Box>
             </Card>
           </Grid>

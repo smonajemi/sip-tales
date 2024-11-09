@@ -24,6 +24,10 @@ const palette = {
       500: '#9e9e9e',
       700: '#616161',
     },
+    button: {
+      500: '#9e9e9e',
+      700: '#616161',
+    },
     defaultChannel: '#333333',
     customColor: '#D87A3D',  // Additional custom color
   };

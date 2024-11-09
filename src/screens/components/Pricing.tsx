@@ -15,47 +15,37 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
+    title: '',
+    subheader: '',
+    price: '',
     description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
+      ''
     ],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
     buttonColor: 'primary',
   },
-  {
-    title: 'Professional',
-    subheader: 'Recommended',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-      'Dedicated team',
-      'Best deals',
-    ],
-    buttonText: 'Start now',
-    buttonVariant: 'contained',
-    buttonColor: 'secondary',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-    buttonColor: 'primary',
-  },
+  // {
+  //   title: '',
+  //   subheader: 'Recommended',
+  //   price: '',
+  //   description: [
+  //   ''
+  //   ],
+  //   buttonText: 'Start now',
+  //   buttonVariant: 'contained',
+  //   buttonColor: 'secondary',
+  // },
+  // {
+  //   title: '',
+  //   price: '',
+  //   description: [
+  //     ''
+  //   ],
+  //   buttonText: 'Contact us',
+  //   buttonVariant: 'outlined',
+  //   buttonColor: 'primary',
+  // },
 ];
 
 const Pricing = () => (
@@ -97,18 +87,20 @@ const Pricing = () => (
       spacing={3}
       sx={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}
     >
-      {tiers.map((tier) => (
+      {tiers.map((tier, key) => (
         <Grid
           size={{ xs: 12, sm: tier.title === 'Enterprise' ? 12 : 6, md: 4 }}
           key={tier.title}
         >
-          <Card
+          <Card key={key}
             sx={[
               {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
+                boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
               },
               tier.title === 'Professional' &&
                 ((theme) => ({

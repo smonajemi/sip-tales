@@ -29,7 +29,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   outlineColor: 'hsla(220, 25%, 80%, 0.2)',
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.grey[200],
-  boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
+  // boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
   backgroundImage: `url(${process.env.TEMPLATE_IMAGE_URL || heroImage})`,
   backgroundSize: 'cover',
   [theme.breakpoints.up('sm')]: {
@@ -116,12 +116,13 @@ const Hero = () => {
         >
           <Typography
             variant="h1"
-            sx={{
+            sx={(theme) => ({
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'row' },
               alignItems: 'center',
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
-            }}
+              color: theme.palette.grey[200]
+            })}
           >
             Mix&nbsp;Timeless&nbsp;
             <Typography
@@ -131,7 +132,7 @@ const Hero = () => {
                 fontSize: 'inherit',
                 color: theme.palette.primary.main,
                 ...(theme.palette.mode === 'dark' && {
-                  color: '#C68943',
+                  color: theme.palette.grey[400],
                 }),
               })}
             >
@@ -139,11 +140,11 @@ const Hero = () => {
             </Typography>
           </Typography>
           <Typography
-            sx={{
+            sx={(theme) => ({
               textAlign: 'center',
-              color: '#D87A3D',
+              color: theme.palette.text.secondary,
               width: { sm: '100%', md: '80%' },
-            }}
+            })}
           >
             Master the art of cocktails with expert recipes. Discover, create, and savor history in every sip. Cheers to innovation!
           </Typography>

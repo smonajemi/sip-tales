@@ -1,7 +1,6 @@
 import LandingPage from "../screens/Landing";
 import ErrorPage from "../screens/Error";
-import SignIn from '../screens/SignIn'
-import SignUp from '../screens/SignUp'
+import Login from '../screens/Login'
 
 interface RouteType {
   path: string;
@@ -19,13 +18,13 @@ const routes: RouteType[] = [
   },
   {
     path: "/signin",
-    component: SignIn,
+    component: Login,
     name: "Sign In",
     protected: false,
   },
   {
     path: "/signup",
-    component: SignUp,
+    component: Login,
     name: "Sign Up",
     protected: false,
   },

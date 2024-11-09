@@ -2,70 +2,18 @@ import { styled } from '@mui/material/styles';
 import { Card, CardContent, Typography, Box, AvatarGroup, Avatar, FormControl, OutlinedInput, InputAdornment, IconButton, Chip, Grid, CardMedia } from '@mui/material';
 import * as React from 'react';
 import {SearchRounded as SearchRoundedIcon} from '@mui/icons-material'
+import useCocktail from './hooks/useCocktail';
 
 
-const cardData = [
-  {
-    img: 'https://picsum.photos/800/450?random=1',
-    tag: 'Engineering',
-    title: 'Revolutionizing software development with cutting-edge tools',
-    description:
-      'Our latest engineering tools are designed to streamline workflows and boost productivity. Discover how these innovations are transforming the software development landscape.',
-    authors: [
-      { name: 'Remy Sharp', avatar: '/static/images/avatar/1.jpg' },
-      { name: 'Travis Howard', avatar: '/static/images/avatar/2.jpg' },
-    ],
-  },
-  {
-    img: 'https://picsum.photos/800/450?random=2',
-    tag: 'Product',
-    title: 'Innovative product features that drive success',
-    description:
-      'Explore the key features of our latest product release that are helping businesses achieve their goals. From user-friendly interfaces to robust functionality, learn why our product stands out.',
-    authors: [{ name: 'Erica Johns', avatar: '/static/images/avatar/6.jpg' }],
-  },
-  {
-    img: 'https://picsum.photos/800/450?random=3',
-    tag: 'Design',
-    title: 'Designing for the future: trends and insights',
-    description:
-      'Stay ahead of the curve with the latest design trends and insights. Our design team shares their expertise on creating intuitive and visually stunning user experiences.',
-    authors: [{ name: 'Kate Morrison', avatar: '/static/images/avatar/7.jpg' }],
-  },
-  {
-    img: 'https://picsum.photos/800/450?random=4',
-    tag: 'Company',
-    title: "Our company's journey: milestones and achievements",
-    description:
-      "Take a look at our company's journey and the milestones we've achieved along the way. From humble beginnings to industry leader, discover our story of growth and success.",
-    authors: [{ name: 'Cindy Baker', avatar: '/static/images/avatar/3.jpg' }],
-  },
-  {
-    img: 'https://picsum.photos/800/450?random=45',
-    tag: 'Engineering',
-    title: 'Pioneering sustainable engineering solutions',
-    description:
-      "Learn about our commitment to sustainability and the innovative engineering solutions we're implementing to create a greener future. Discover the impact of our eco-friendly initiatives.",
-    authors: [
-      { name: 'Agnes Walker', avatar: '/static/images/avatar/4.jpg' },
-      { name: 'Trevor Henderson', avatar: '/static/images/avatar/5.jpg' },
-    ],
-  },
-  {
-    img: 'https://picsum.photos/800/450?random=6',
-    tag: 'Product',
-    title: 'Maximizing efficiency with our latest product updates',
-    description:
-      'Our recent product updates are designed to help you maximize efficiency and achieve more. Get a detailed overview of the new features and improvements that can elevate your workflow.',
-    authors: [{ name: 'Travis Howard', avatar: '/static/images/avatar/2.jpg' }],
-  },
-];
+
 
 const SyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   padding: 0,
   height: '100%',
+  boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
   backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
     backgroundColor: 'transparent',
@@ -97,11 +45,7 @@ const StyledTypography = styled(Typography)({
   textOverflow: 'ellipsis',
 });
 
-const categories = [
-    "All categories", 
-    "Shaken", 
-    "Not Shaken"
-  ];
+
 
 const Author = ({ authors }: { authors: { name: string; avatar: string }[] }) => (
   <Box
@@ -155,19 +99,7 @@ const Search = () => (
 );
 
 const CocktailContent: React.FC = () => {
-  const [focusedCardIndex, setFocusedCardIndex] = React.useState<number | null>(null);
-
-  const handleFocus = (index: number) => {
-    setFocusedCardIndex(index);
-  };
-
-  const handleBlur = () => {
-    setFocusedCardIndex(null);
-  };
-
-  const handleClick = (chip: string) => {
-    alert(`You clicked the ${chip} chip.`);
-  };
+ const {focusedCardIndex, handleFocus, handleBlur, handleClick, cardData, categories} = useCocktail();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -257,10 +189,13 @@ const CocktailContent: React.FC = () => {
                   backgroundColor: 'transparent',
                   height: { xs: 'auto', sm: 140 },
                   objectFit: 'cover',
+                  backgroundRepeat: "no-repeat",
                 }}
-              />
+              />   
               <SyledCardContent>
-                <Chip size="small" label={card.tag} color="secondary" />
+                <Chip size="small" label={card.tag} sx={(theme) => ({
+                  backgroundColor: theme.palette.baseShadow
+                })} />
                 <Typography variant="h6">{card.title}</Typography>
                 <StyledTypography variant="body2" color="text.secondary">
                   {card.description}
