@@ -237,8 +237,8 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
         message={
           <span>
             Please log in to access this content.{' '}
-            <Link to="/signup" style={{ color: '#1976d2', textDecoration: 'underline' }}>
-              Sign up
+            <Link to="/signin" style={{ color: '#1976d2', textDecoration: 'underline' }}>
+              Login
             </Link>
           </span>
         }
