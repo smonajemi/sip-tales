@@ -84,12 +84,12 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
 
   return (
     <Box
-    id ='features'
+      id='features'
       sx={{
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         gap: 2,
-        boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
+
 
       }}
     >
@@ -109,6 +109,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
           component="div" // Add 'component' if needed
           sx={(theme) => ({
             mb: 2,
+             boxShadow: '0px 0px 24px 12px hsla(210, 100%, 25%, 0.2)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: 280,
@@ -146,34 +147,38 @@ const Features: React.FC = () => {
   };
 
   const selectedFeature = items[selectedItemIndex];
-
+  // sx={{
+  //   position: 'relative',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   marginTop: '10px',
+  //   pt: { xs: 4, sm: 2 },
+  //   pb: { xs: 8, sm: 8 },
+  //   gap: { xs: 3, sm: 6 },
+  // }} 
   return (
-    <Container id="features"    
-    sx={{
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginTop: '10px',
-      pt: { xs: 4, sm: 2 },
-      pb: { xs: 8, sm: 8 },
-      gap: { xs: 3, sm: 6 },
-    }} >
-         <Box
-          sx={{
-            width: { sm: '100%', md: '60%' },
-            textAlign: { sm: 'left', md: 'center' },
-          }}
+    <Container id="features" sx={{ py: { xs: 8, sm: 16 }, marginTop: '10px', pt: { xs: 4, sm: 2 }, gap: { xs: 3, sm: 6 } }}  >
+      <Box
+        sx={{ width: { sm: '100%', md: '100%' } }}
+      >
+        <Typography
+          component="h2"
+          variant="h4"
+          gutterBottom
+          sx={{ color: 'text.primary' }}
         >
-          <Typography component="h2" variant="h4" gutterBottom>
           Features
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'text.secondary' }} >
-          Sip&Tales brings an immersive cocktail experience to life with a variety of features, including a comprehensive cocktail search, personalized bartender tips, 
-          rich cocktail history and storytelling, cross-platform accessibility, 
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
+        >
+          Sip&Tales brings an immersive cocktail experience to life with a variety of features, including a comprehensive cocktail search, personalized bartender tips,
+          rich cocktail history and storytelling, cross-platform accessibility,
           customizable recipes, and user reviews. With our premium add-ons and an interactive online bartender buddy, each drink becomes a memorable journey into mixology.
-          </Typography>
-        </Box>
+        </Typography>
+      </Box>
       <Box
         sx={{
           display: 'flex',
@@ -222,7 +227,7 @@ const Features: React.FC = () => {
                       textAlign: 'left',
                       textTransform: 'none',
                       color: 'text.secondary',
-                      
+
                     },
                     selectedItemIndex === index && {
                       color: 'text.primary',
@@ -271,12 +276,12 @@ const Features: React.FC = () => {
                 backgroundImage: 'var(--items-imageLight)',
                 ...theme.applyStyles('dark', {
                   backgroundImage: 'var(--items-imageDark)',
-                  
+
                 }),
-                
+
                 '--items-imageLight': items[selectedItemIndex]?.imageLight ?? '',
                 '--items-imageDark': items[selectedItemIndex]?.imageDark ?? '',
-                
+
               })}
             />
 
