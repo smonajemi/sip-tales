@@ -3,7 +3,7 @@ import { AppBar, Box, Button, Container, Divider, Drawer, MenuItem, IconButton }
 import { Menu as MenuIcon, CloseRounded as CloseRoundedIcon } from '@mui/icons-material';
 import logoPic from '../../images/logo-tran.png';
 import useNav from '../hooks/useNav';
-
+import ColorModeIconDropdown from './ColorModeIconDropdown';
 interface NavBarProps {
   isDevice?: boolean;
   handleSmoothScroll: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
