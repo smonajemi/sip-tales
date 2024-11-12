@@ -169,9 +169,9 @@ const Features: React.FC = () => {
           Features
           </Typography>
           <Typography variant="body1" sx={{ color: 'text.secondary' }} >
-          Sip&Tales offers a variety of key features including a comprehensive cocktail search, personalized bartender tips, cocktail history and storytelling, 
-         cross-platform accessibility, customizable recipes, user reviews, interactive shopping lists, 
-         and premium add-ons, all designed to enhance your mixology experience and make every drink memorable.
+          Sip&Tales brings an immersive cocktail experience to life with a variety of features, including a comprehensive cocktail search, personalized bartender tips, 
+          rich cocktail history and storytelling, cross-platform accessibility, 
+          customizable recipes, and user reviews. With our premium add-ons and an interactive online bartender buddy, each drink becomes a memorable journey into mixology.
           </Typography>
         </Box>
       <Box
