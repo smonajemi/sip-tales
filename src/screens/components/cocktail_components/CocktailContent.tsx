@@ -2,9 +2,10 @@ import { styled } from '@mui/material/styles';
 import { Card, CardContent, Typography, Box, AvatarGroup, Avatar, FormControl, OutlinedInput, InputAdornment, IconButton, Chip, CardMedia } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import * as React from 'react';
-import {SearchRounded as SearchRoundedIcon} from '@mui/icons-material'
+import { SearchRounded as SearchRoundedIcon } from '@mui/icons-material'
 import useCocktail from './hooks/useCocktail';
-
+import cocktailDataList from './cocktailList01.json'
+import { useState } from 'react';
 const StyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -43,40 +44,6 @@ const StyledTypography = styled(Typography)({
   textOverflow: 'ellipsis',
 });
 
-
-
-const Author = ({ authors }: { authors: { name: string; avatar: string }[] }) => (
-  <Box
-    sx={{
-      display: 'flex',
-      flexDirection: 'row',
-      gap: 2,
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '16px',
-    }}
-  >
-    <Box
-      sx={{ display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'center' }}
-    >
-      <AvatarGroup max={3}>
-        {authors.map((author, index) => (
-          <Avatar
-            key={index}
-            alt={author.name}
-            src={author.avatar}
-            sx={{ width: 24, height: 24 }}
-          />
-        ))}
-      </AvatarGroup>
-      <Typography variant="caption">
-        {authors.map((author) => author.name).join(', ')}
-      </Typography>
-    </Box>
-    <Typography variant="caption">July 14, 2021</Typography>
-  </Box>
-);
-
 const Search = () => (
   <FormControl sx={{ width: { xs: '100%', md: '25ch' } }} variant="outlined">
     <OutlinedInput
@@ -97,73 +64,69 @@ const Search = () => (
 );
 
 const CocktailContent: React.FC = () => {
- const {focusedCardIndex, handleFocus, handleBlur, handleClick, cardData, categories} = useCocktail();
+  const { focusedCardIndex, handleFocus, handleBlur, mockData, categories } = useCocktail();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All categories');
 
+  const handleSearchChange = (event: any) => {
+    setSearchQuery(event.target.value.toLowerCase());
+  };
+
+  const handleCategoryClick = (category: any) => {
+    setSelectedCategory(category);
+  };
+
+  // Filter the cocktailDataList based on both the search query and selected category
+  const filteredCocktails = cocktailDataList.filter((card) => {
+    const matchesQuery = card.name.toLowerCase().includes(searchQuery);
+    const matchesCategory = 
+      selectedCategory === 'All categories' || 
+      card.tag.toLowerCase() === selectedCategory.toLowerCase();
+    
+    return matchesQuery && matchesCategory;
+  });
+  
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <Box
-        sx={{
-          display: { xs: 'flex', sm: 'none' },
-          flexDirection: 'row',
-          gap: 1,
-          width: { xs: '100%', md: 'fit-content' },
-          overflow: 'auto',
-        }}
-      >
-        <Search />
-        <IconButton size="small" aria-label="RSS feed">
-          {/* <RssFeedRoundedIcon /> */}
-        </IconButton>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column-reverse', md: 'row' },
-          width: '100%',
-          justifyContent: 'space-between',
-          alignItems: { xs: 'start', md: 'center' },
-          gap: 4,
-          overflow: 'auto',
-        }}
-      >
-     <Box
-    sx={{
-      display: 'inline-flex',
-      flexDirection: 'row',
-      gap: 3,
-      overflow: 'auto',
-    }}
-  >
-    {categories.map((category) => (
-      <Chip
-        key={category}
-        onClick={() => handleClick(category)}
-        size="medium"
-        label={category}
-        sx={{
-          backgroundColor: category === "All categories" ? 'transparent' : 'transparent',
-          border: 'none',
-        }}
-      />
-    ))}
-  </Box>
-        <Box
-          sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'row',
-            gap: 1,
-            width: { xs: '100%', md: 'fit-content' },
-            overflow: 'auto',
+      {/* Search Input */}
+      <FormControl sx={{ width: { xs: '100%', md: '25ch' } }} variant="outlined">
+        <OutlinedInput
+          size="small"
+          id="search"
+          placeholder="Search…"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          sx={{ flexGrow: 1 }}
+          startAdornment={
+            <InputAdornment position="start" sx={{ color: 'text.primary' }}>
+              <SearchRoundedIcon fontSize="small" />
+            </InputAdornment>
+          }
+          inputProps={{
+            'aria-label': 'search',
           }}
-        >
-          <Search />
-          {/* <IconButton size="small" aria-label="RSS feed">
-            <RssFeedRounded />
-          </IconButton> */}
-        </Box>
+        />
+      </FormControl>
+
+      {/* Category Chips */}
+      <Box sx={{ display: 'inline-flex', flexDirection: 'row', gap: 3, overflow: 'auto' }}>
+        {categories.map((category) => (
+          <Chip
+            key={category}
+            onClick={() => handleCategoryClick(category)}
+            size="medium"
+            label={category}
+            sx={{
+              backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
+              border: 'none',
+            }}
+          />
+        ))}
       </Box>
+
+      {/* Filtered Cocktail List */}
       <Grid container spacing={4}>
-        {cardData.map((card, index) => (
+        {filteredCocktails.map((card, index) => (
           <Grid
             key={index}
             size={{ xs: 12, sm: 6, md: 4 }}
@@ -179,21 +142,22 @@ const CocktailContent: React.FC = () => {
             <StyledCard>
               <CardMedia
                 component="img"
-                alt={card.title}
+                alt={card.name}
                 height="140"
-                image={card.img}
+                image={card.image}
                 sx={{
                   backgroundColor: 'transparent',
                   height: { xs: 'auto', sm: 140 },
                   objectFit: 'cover',
                   backgroundRepeat: "no-repeat",
                 }}
-              />   
+              />
               <StyledCardContent>
-                <Chip size="small" label={card.tag} sx={(theme) => ({
-                  backgroundColor: theme.palette.baseShadow
-                })} />
-                <Typography variant="h6">{card.title}</Typography>
+                <Chip size="small" label={card.tag.charAt(0).toUpperCase() + card.tag.slice(1)}
+                  sx={(theme) => ({
+                    backgroundColor: theme.palette.baseShadow
+                  })} />
+                <Typography variant="h6">{card.name}</Typography>
                 <StyledTypography variant="body2" color="text.secondary">
                   {card.description}
                 </StyledTypography>
@@ -206,5 +170,6 @@ const CocktailContent: React.FC = () => {
     </Box>
   );
 };
+
 
 export default CocktailContent;
