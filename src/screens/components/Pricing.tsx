@@ -90,8 +90,7 @@ const Pricing = () => (
       </Typography>
       <Typography variant="body1" sx={{ color: 'text.secondary' }}>
         Discover the perfect cocktail experience at a price that fits your style!<br />
-        From casual mixers to expert-level creations, we’ve crafted pricing options to elevate every sip.<br />
-        Built with seamless Material UI components, tailored for simplicity and impact.
+        From casual mixers to expert-level creations, our pricing options are designed to elevate every sip.
       </Typography>
 
     </Box>
