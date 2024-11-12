@@ -24,10 +24,11 @@ import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import { useCallback } from 'react';
 import CustomLoader from '../../components/CustomLoader';
-import CustomSlider from '../../components/CustomSlider';
 import Grid from '@mui/material/Grid2'
 import { Card, CardContent } from '@mui/material';
 import cocktailList from './cocktail_components/cocktailList01.json';
+import CustomSlider from './cocktail_components/CustomSlider';
+import useAuth from '../../components/hooks/useAuth';
 
 const Hero = () => {
   const { fetchCocktailByName } = useCocktailApi();
@@ -37,6 +38,7 @@ const Hero = () => {
   const [cocktailName, setCocktailName] = React.useState<string>('');
   const [hasFetched, setHasFetched] = React.useState<boolean>(false);
   const theme = useTheme();
+  const { isLoggedIn } = useAuth();
 
   const capitalize = (text: string | undefined): string => {
     if (!text) return '';
@@ -96,7 +98,7 @@ const Hero = () => {
   // };
 
   // const mockData = 
- 
+
   const mockData = [
     {
       id: "1",
@@ -156,7 +158,7 @@ const Hero = () => {
       ingredients: ["Tequila", "Lime Juice", "Rich Syrup", "Triple Sec", "Salt for rim"]
     }
   ];
-  
+
   const fetchCocktailData = useCallback(
     debounce(async (name: string) => {
       setLoading(true);
@@ -184,61 +186,61 @@ const Hero = () => {
   };
 
   return (
-<Box sx={{ width: '100%', overflow: 'hidden', marginTop: 15 }}>
-  <Box sx={{ 
-       display: 'flex',
-       flexWrap: 'wrap',
-       overflow: 'hidden', // Ensures content respects borderRadius
-       borderRadius: '15px', // Rounds the entire container
-       width: '100%', // Optional: adjust to fit your layout needs
-       maxWidth: '1200px', // Optional: set a max-width if needed
-       margin: '0 auto', // Optional: centers the container
-       
-  }}>
-  {[heroImage01, heroImage02, heroImage03, heroImage].map((imgSrc, index) => (
-    <Box
-      key={index}
-      sx={{
-        position: 'relative',
-        flex: '1 1 25%',
-        height: '300px',
-        overflow: 'hidden',
-        
-      }}
-    >
-      <Box
-        component="img"
-        src={imgSrc}
-        alt={`Hero Image ${index + 1}`}
-        sx={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.6)', // Adjust opacity as needed
-        }}
-      />
+    <Box sx={{ width: '100%', overflow: 'hidden', marginTop: 15 }}>
+      <Box sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        overflow: 'hidden', // Ensures content respects borderRadius
+        borderRadius: '15px', // Rounds the entire container
+        width: '100%', // Optional: adjust to fit your layout needs
+        maxWidth: '1200px', // Optional: set a max-width if needed
+        margin: '0 auto', // Optional: centers the container
+
+      }}>
+        {[heroImage01, heroImage02, heroImage03, heroImage].map((imgSrc, index) => (
+          <Box
+            key={index}
+            sx={{
+              position: 'relative',
+              flex: '1 1 25%',
+              height: '300px',
+              overflow: 'hidden',
+
+            }}
+          >
+            <Box
+              component="img"
+              src={imgSrc}
+              alt={`Hero Image ${index + 1}`}
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)', // Adjust opacity as needed
+              }}
+            />
+          </Box>
+        ))}
+      </Box>
+
+      {/* Bottom Section with Cards */}
+      <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 12 }} >
+          <CustomSlider cardData={mockData}/>
+        </Grid>
+      </Grid>
     </Box>
-  ))}
-  </Box>
 
-  {/* Bottom Section with Cards */}
-  <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
-    <Grid size={{ xs: 12, sm: 6, md: 12 }} >
-      <CustomSlider cardData={mockData} />
-    </Grid>
-  </Grid>
-</Box>
 
-  
   );
 };
 

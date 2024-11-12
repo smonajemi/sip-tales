@@ -15,38 +15,50 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const tiers = [
   {
-    title: '',
-    subheader: '',
-    price: '',
+    title: 'Basic',
+    subheader: 'Free Plan',
+    price: '0',
     description: [
-      ''
+      'Access to standard recipes',
+      'Free cocktail search',
+      'Create up to 3 custom cocktails',
+      'Basic ingredient substitution suggestions'
     ],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
     buttonColor: 'primary',
   },
-  // {
-  //   title: '',
-  //   subheader: 'Recommended',
-  //   price: '',
-  //   description: [
-  //   ''
-  //   ],
-  //   buttonText: 'Start now',
-  //   buttonVariant: 'contained',
-  //   buttonColor: 'secondary',
-  // },
-  // {
-  //   title: '',
-  //   price: '',
-  //   description: [
-  //     ''
-  //   ],
-  //   buttonText: 'Contact us',
-  //   buttonVariant: 'outlined',
-  //   buttonColor: 'primary',
-  // },
+  {
+    title: 'Pro',
+    subheader: 'Recommended',
+    price: '2.99',
+    description: [
+      'Access to premium recipes',
+      'Signature cocktail suggestions',
+      'Unlimited custom cocktails',
+      'Recipe sharing feature',
+      'Advanced ingredient substitution suggestions'
+    ],
+    buttonText: 'Start now',
+    buttonVariant: 'contained',
+    buttonColor: 'secondary',
+  },
+  {
+    title: 'Premium',
+    subheader: 'For Enthusiasts',
+    price: '4.99',
+    description: [
+      'All Pro features',
+      'Personalized cocktail recommendations',
+      'Monthly cocktail workshops',
+      'Early access to new features'
+    ],
+    buttonText: 'Join Premium',
+    buttonVariant: 'contained',
+    buttonColor: 'primary',
+  },
 ];
+
 
 const Pricing = () => (
   <Container
@@ -76,11 +88,11 @@ const Pricing = () => (
         Pricing
       </Typography>
       <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-        Quickly build an effective pricing table for your potential customers with
-        this layout. <br />
-        It&apos;s built with default Material UI components with little
-        customization.
+        Discover the perfect cocktail experience at a price that fits your style!<br />
+        From casual mixers to expert-level creations, we’ve crafted pricing options to elevate every sip.<br />
+        Built with seamless Material UI components, tailored for simplicity and impact.
       </Typography>
+
     </Box>
     <Grid
       container
@@ -103,17 +115,17 @@ const Pricing = () => (
 
               },
               tier.title === 'Professional' &&
-                ((theme) => ({
-                  border: 'none',
+              ((theme) => ({
+                border: 'none',
+                background:
+                  'radial-gradient(circle at 50% 0%, hsl(220, 20%, 35%), hsl(220, 30%, 6%))',
+                boxShadow: `0 8px 12px hsla(220, 20%, 42%, 0.2)`,
+                ...theme.applyStyles('dark', {
                   background:
-                    'radial-gradient(circle at 50% 0%, hsl(220, 20%, 35%), hsl(220, 30%, 6%))',
-                  boxShadow: `0 8px 12px hsla(220, 20%, 42%, 0.2)`,
-                  ...theme.applyStyles('dark', {
-                    background:
-                      'radial-gradient(circle at 50% 0%, hsl(220, 20%, 20%), hsl(220, 30%, 16%))',
-                    boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
-                  }),
-                })),
+                    'radial-gradient(circle at 50% 0%, hsl(220, 20%, 20%), hsl(220, 30%, 16%))',
+                  boxShadow: `0 8px 12px hsla(0, 0%, 0%, 0.8)`,
+                }),
+              })),
             ]}
           >
             <CardContent>

@@ -1,4 +1,3 @@
-// CustomSnackbar.tsx
 import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -8,7 +7,7 @@ interface CustomSnackbarProps {
   open: boolean;
   onClose: () => void;
   autoHideDuration?: number;
-  message: string;
+  message: string | React.ReactNode;
   severity?: AlertProps['severity'];
   variant?: AlertProps['variant'];
 }
@@ -28,7 +27,6 @@ const CustomSnackbar: React.FC<CustomSnackbarProps> = ({
       onClose={onClose}
     >
       <Alert
-        onClose={onClose}
         severity={severity}
         variant={variant}
         sx={{ width: '100%' }}

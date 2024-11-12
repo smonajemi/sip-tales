@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Suspense, useState } from 'react';
 import NavBar from './components/NavBar';
 import { Container, CssBaseline, PaletteMode } from '@mui/material';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import Testimonials from './components/Testimonials';
-import Highlights from './components/Highlights';
-import Pricing from './components/Pricing';
-import Footer from './components/Footer';
 import AppTheme from '../theme/AppTheme';
 import { useResponsiveness } from '../components/hooks/useResponsiveness';
-import CocktailContent from './components/cocktail_components/CocktailContent';
 import useSmoothScroll from '../components/hooks/useSmoothScroll';
-import {SearchRounded as SearchRoundedIcon, HistoryEduRounded as HistoryEduRoundedIcon, LocalBarRounded as LocalBarRoundedIcon, SettingsSuggestRounded as SettingsSuggestRoundedIcon, SupportAgentRounded as SupportAgentRoundedIcon, PrecisionManufacturingRounded as PrecisionManufacturingRoundedIcon} from '@mui/icons-material';
+import {
+  SearchRounded as SearchRoundedIcon,
+  HistoryEduRounded as HistoryEduRoundedIcon,
+  LocalBarRounded as LocalBarRoundedIcon,
+  SettingsSuggestRounded as SettingsSuggestRoundedIcon,
+  SupportAgentRounded as SupportAgentRoundedIcon,
+  PrecisionManufacturingRounded as PrecisionManufacturingRoundedIcon,
+} from '@mui/icons-material';
 
+import CustomLoader from '../components/CustomLoader';
+import useAuth from '../components/hooks/useAuth';
+import CustomSnackbar from '../components/CustomSnackbar';
 interface LandingPageProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
@@ -28,6 +32,15 @@ const LandingPage: React.FC<LandingPageProps> = ({
   ...props
 }) => {
   const { isDevice, handleSmoothScroll } = useResponsiveness();
+  const {isLoggedIn} = useAuth()
+  
+  // Lazy loading components
+  const CocktailContent = React.lazy(() => import('./components/cocktail_components/CocktailContent'));
+  const Features = React.lazy(() => import('./components/Features'));
+  const Testimonials = React.lazy(() => import('./components/Testimonials'));
+  const Highlights = React.lazy(() => import('./components/Highlights'));
+  const Pricing = React.lazy(() => import('./components/Pricing'));
+  const Footer = React.lazy(() => import('./components/Footer'));
 
   const listItems = [
     {
@@ -61,22 +74,36 @@ const LandingPage: React.FC<LandingPageProps> = ({
       description: 'Each recipe is crafted with precision, ensuring that every measure, mix, and garnish is just right for a perfect drink every time.',
     },
   ];
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll} />
       <Hero />
       <Container   
-      maxWidth="lg"
+        maxWidth="lg"
         component="main"
-        sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}>
-        <CocktailContent />
-        <Features />
-        <Testimonials />
-        <Highlights isDevice={isDevice} listItems={listItems}/>
-        <Pricing />
+        sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
+      >
+         <Suspense fallback={<CustomLoader />}>
+          <CocktailContent isLoggedIn={isLoggedIn}  />
+        </Suspense>
+        <Suspense fallback={<CustomLoader  />}>
+          <Features />
+        </Suspense>
+        <Suspense fallback={<CustomLoader />}>
+          <Testimonials />
+        </Suspense>
+        <Suspense fallback={<CustomLoader  />}>
+          <Highlights isDevice={isDevice} listItems={listItems} />
+        </Suspense>
+        <Suspense fallback={<CustomLoader />}>
+          <Pricing />
+        </Suspense>
         {/* <CocktailBlog /> */}
-        <Footer handleSmoothScroll={handleSmoothScroll} />
+        <Suspense fallback={<CustomLoader />}>
+          <Footer handleSmoothScroll={handleSmoothScroll} />
+        </Suspense>
       </Container>
     </AppTheme>
   );

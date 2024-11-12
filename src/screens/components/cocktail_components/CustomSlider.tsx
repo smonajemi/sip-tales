@@ -1,6 +1,6 @@
 import { Card, Typography, CardMedia, styled, CardContent, Box, List, ListItem, Stack } from "@mui/material";
 import { FC, useRef, useEffect, useState } from "react";
-import { Cocktail } from "../types/cocktail.types";
+import { Cocktail } from "../../../types/cocktail.types";
 import Grid from "@mui/material/Grid2";
 
 interface CustomSliderProps {

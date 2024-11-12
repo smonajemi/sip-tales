@@ -6,6 +6,11 @@ import { SearchRounded as SearchRoundedIcon } from '@mui/icons-material'
 import useCocktail from './hooks/useCocktail';
 import cocktailDataList from './cocktailList01.json'
 import { useState } from 'react';
+import CustomPagination from '../../../components/CustomPagination';
+import CustomSnackbar from '../../../components/CustomSnackbar';
+import { Link } from 'react-router-dom';
+
+
 const StyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -63,10 +68,17 @@ const Search = () => (
   </FormControl>
 );
 
-const CocktailContent: React.FC = () => {
+interface CocktailContentProps {
+  isLoggedIn: boolean
+}
+
+const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
   const { focusedCardIndex, handleFocus, handleBlur, mockData, categories } = useCocktail();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All categories');
+  const [page, setPage] = useState(1);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const ITEMS_PER_PAGE = 6; // Adjust based on how many items per page you want
 
   const handleSearchChange = (event: any) => {
     setSearchQuery(event.target.value.toLowerCase());
@@ -79,13 +91,35 @@ const CocktailContent: React.FC = () => {
   // Filter the cocktailDataList based on both the search query and selected category
   const filteredCocktails = cocktailDataList.filter((card) => {
     const matchesQuery = card.name.toLowerCase().includes(searchQuery);
-    const matchesCategory = 
-      selectedCategory === 'All categories' || 
+    const matchesCategory =
+      selectedCategory === 'All categories' ||
       card.tag.toLowerCase() === selectedCategory.toLowerCase();
-    
+
     return matchesQuery && matchesCategory;
   });
-  
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  // Calculate which items to display on the current page
+  const paginatedCocktails = filteredCocktails.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
+
+
+  const handleCardClick = () => {
+    if (!isLoggedIn) {
+      setSnackbarOpen(true); // Always set to true on card click
+    }
+  };
+
+  // Function to handle Snackbar close
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       {/* Search Input */}
@@ -126,10 +160,11 @@ const CocktailContent: React.FC = () => {
 
       {/* Filtered Cocktail List */}
       <Grid container spacing={4}>
-        {filteredCocktails.map((card, index) => (
+        {paginatedCocktails.map((card, index) => (
           <Grid
             key={index}
             size={{ xs: 12, sm: 6, md: 4 }}
+            onClick={handleCardClick}
             onFocus={() => handleFocus(index)}
             onBlur={handleBlur}
             style={{
@@ -137,9 +172,36 @@ const CocktailContent: React.FC = () => {
               flexDirection: 'column',
               gap: 2,
               paddingBottom: '0 !important',
+              cursor: !isLoggedIn ? 'pointer' : 'default',
             }}
           >
-            <StyledCard>
+            <StyledCard
+              style={{
+                filter: isLoggedIn ? 'none' : 'blur(8px)',
+                position: 'relative',
+              }}
+            >
+              {!isLoggedIn && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    color: '#fff',
+                    zIndex: 1,
+                  }}
+                >
+                  <Typography variant="body1" align="center">
+                    Please log in to view details
+                  </Typography>
+                </Box>
+              )}
               <CardMedia
                 component="img"
                 alt={card.name}
@@ -149,24 +211,46 @@ const CocktailContent: React.FC = () => {
                   backgroundColor: 'transparent',
                   height: { xs: 'auto', sm: 140 },
                   objectFit: 'cover',
-                  backgroundRepeat: "no-repeat",
+                  backgroundRepeat: 'no-repeat',
                 }}
               />
               <StyledCardContent>
-                <Chip size="small" label={card.tag.charAt(0).toUpperCase() + card.tag.slice(1)}
+                <Chip
+                  size="small"
+                  label={card.tag.charAt(0).toUpperCase() + card.tag.slice(1)}
                   sx={(theme) => ({
-                    backgroundColor: theme.palette.baseShadow
-                  })} />
+                    backgroundColor: theme.palette.baseShadow,
+                  })}
+                />
                 <Typography variant="h6">{card.name}</Typography>
                 <StyledTypography variant="body2" color="text.secondary">
                   {card.description}
                 </StyledTypography>
               </StyledCardContent>
-              {/* <Author authors={card.authors} /> */}
             </StyledCard>
           </Grid>
         ))}
       </Grid>
+      <CustomSnackbar
+        open={snackbarOpen}
+        onClose={handleSnackbarClose}
+        message={
+          <span>
+            Please log in to access this content.{' '}
+            <Link to="/signup" style={{ color: '#1976d2', textDecoration: 'underline' }}>
+              Sign up
+            </Link>
+          </span>
+        }
+        severity="warning"
+      />
+
+
+      <CustomPagination
+        count={Math.ceil(filteredCocktails.length / ITEMS_PER_PAGE)}
+        page={page}
+        onChange={handlePageChange}
+      />
     </Box>
   );
 };
