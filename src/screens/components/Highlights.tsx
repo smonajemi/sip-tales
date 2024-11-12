@@ -18,22 +18,18 @@ interface HighlightsProps {
 
 const Highlights: React.FC<HighlightsProps> = ({isDevice, listItems}) => {
   return (
-    <Box
-      id="highlights"
-      sx={{
+ 
+      <Container
+       id="highlights"
+        sx={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '10px',
         pt: { xs: 4, sm: 2 },
         pb: { xs: 8, sm: 8 },
-        color: 'white',
-        borderRadius: '15px'
-      }}
-    >
-      <Container
-        sx={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: { xs: 3, sm: 6 },
+        gap: { xs: 3, sm: 6 },
         }}
       >
         <Box
@@ -45,10 +41,9 @@ const Highlights: React.FC<HighlightsProps> = ({isDevice, listItems}) => {
           <Typography component="h2" variant="h4" gutterBottom>
             Highlights
           </Typography>
-          <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+          <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+          Discover what makes *Sip&Tales* your go-to for cocktail recipes: from diverse drink
+          options to bartender insights, each feature enhances your mixology experience.
           </Typography>
         </Box>
         <Grid container spacing={2}>
@@ -82,7 +77,7 @@ const Highlights: React.FC<HighlightsProps> = ({isDevice, listItems}) => {
           ))}
         </Grid>
       </Container>
-    </Box>
+ 
   );
 };
 

@@ -64,12 +64,13 @@ const Pricing = () => (
   <Container
     id="pricing"
     sx={{
-      pt: { xs: 4, sm: 4 },
-      pb: { xs: 8, sm: 16 },
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      marginTop: '10px',
+      pt: { xs: 4, sm: 2 },
+      pb: { xs: 8, sm: 8 },
       gap: { xs: 3, sm: 6 },
     }}
   >

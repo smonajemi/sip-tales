@@ -1,10 +1,9 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 import NavBar from './components/NavBar';
 import { Container, CssBaseline, PaletteMode } from '@mui/material';
 import Hero from './components/Hero';
 import AppTheme from '../theme/AppTheme';
 import { useResponsiveness } from '../components/hooks/useResponsiveness';
-import useSmoothScroll from '../components/hooks/useSmoothScroll';
 import {
   SearchRounded as SearchRoundedIcon,
   HistoryEduRounded as HistoryEduRoundedIcon,
@@ -16,7 +15,6 @@ import {
 
 import CustomLoader from '../components/CustomLoader';
 import useAuth from '../components/hooks/useAuth';
-import CustomSnackbar from '../components/CustomSnackbar';
 interface LandingPageProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
@@ -83,7 +81,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
       <Container   
         maxWidth="lg"
         component="main"
-        sx={{ display: 'flex', flexDirection: 'column', my: 16, gap: 4 }}
+        sx={{ display: 'flex', flexDirection: 'column', my: 10, gap: 4 }}
       >
          <Suspense fallback={<CustomLoader />}>
           <CocktailContent isLoggedIn={isLoggedIn}  />

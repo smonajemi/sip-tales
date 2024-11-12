@@ -87,18 +87,15 @@ const Testimonials = () => {
   return (
     <Container
       id="testimonials"
-      sx={{
-        pt: { xs: 4, sm: 2 },
-        pb: { xs: 8, sm: 8 },
-        color: 'white',
-        // bgcolor: 'grey.800',
-        borderRadius: '15px',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-
+        sx={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: '10px',
+          pt: { xs: 4, sm: 2 },
+          pb: { xs: 8, sm: 8 },
+          gap: { xs: 3, sm: 6 },
       }}
     >
       <Box

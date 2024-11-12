@@ -148,25 +148,32 @@ const Features: React.FC = () => {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 8 }, }} >
-      <Box sx={{ width: { sm: '100%', md: '60%' } }}>
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: 'text.primary' }}
+    <Container id="features"    
+    sx={{
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '10px',
+      pt: { xs: 4, sm: 2 },
+      pb: { xs: 8, sm: 8 },
+      gap: { xs: 3, sm: 6 },
+    }} >
+         <Box
+          sx={{
+            width: { sm: '100%', md: '60%' },
+            textAlign: { sm: 'left', md: 'center' },
+          }}
         >
-          Product features
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: 'text.title', mb: { xs: 2, sm: 4 } }}
-        >
-         Sip&Tales offers a variety of key features including a comprehensive cocktail search, personalized bartender tips, cocktail history and storytelling, 
+          <Typography component="h2" variant="h4" gutterBottom>
+          Features
+          </Typography>
+          <Typography variant="body1" sx={{ color: 'text.secondary' }} >
+          Sip&Tales offers a variety of key features including a comprehensive cocktail search, personalized bartender tips, cocktail history and storytelling, 
          cross-platform accessibility, customizable recipes, user reviews, interactive shopping lists, 
          and premium add-ons, all designed to enhance your mixology experience and make every drink memorable.
-        </Typography>
-      </Box>
+          </Typography>
+        </Box>
       <Box
         sx={{
           display: 'flex',
