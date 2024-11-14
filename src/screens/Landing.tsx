@@ -84,7 +84,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
         sx={{ display: 'flex', flexDirection: 'column', my: 10, gap: 4 }}
       >
          <Suspense fallback={<CustomLoader />}>
-          <CocktailContent isLoggedIn={isLoggedIn}  />
+          <CocktailContent isLoggedIn={true}  />
         </Suspense>
         <Suspense fallback={<CustomLoader  />}>
           <Features />

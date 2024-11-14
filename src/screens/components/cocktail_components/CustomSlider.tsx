@@ -1,7 +1,8 @@
-import { Card, Typography, CardMedia, styled, CardContent, Box, List, ListItem, Stack } from "@mui/material";
+import { Card, Typography, CardMedia, styled, CardContent, Box, List, ListItem, Stack, Chip } from "@mui/material";
 import { FC, useRef, useEffect, useState } from "react";
 import { Cocktail } from "../../../types/cocktail.types";
 import Grid from "@mui/material/Grid2";
+import CustomModal from "../../../components/CustomModal";
 
 interface CustomSliderProps {
   cardData: Cocktail[];
@@ -9,6 +10,7 @@ interface CustomSliderProps {
   cardStyles?: object;
   mediaStyles?: object;
   contentStyles?: object;
+  classicCocktailData: Cocktail[];
 }
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -43,15 +45,31 @@ const StyledCardContent = styled(CardContent)({
 const CustomSlider: FC<CustomSliderProps> = ({
   autoPlay = 0,
   cardData,
+  classicCocktailData,
   cardStyles = {},
   mediaStyles = {},
   contentStyles = {},
 }) => {
   const autoPlayRef = useRef<() => void>();
   const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
+  const [selectedCocktail, setSelectedCocktail] = useState<Cocktail | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFocus = (index: number) => setFocusedCardIndex(index);
   const handleBlur = () => setFocusedCardIndex(null);
+
+  const handleSimilarDrinkClick = (drinkName: string) => {
+    const similarDrink = classicCocktailData.find(drink => drink.name === drinkName);
+    if (similarDrink) {
+      setSelectedCocktail(similarDrink);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCocktail(null);
+  };
 
   useEffect(() => {
     if (autoPlay && autoPlay > 0) {
@@ -64,84 +82,107 @@ const CustomSlider: FC<CustomSliderProps> = ({
   }, [autoPlay]);
 
   return (
-    <Grid container spacing={2} columns={12} justifyContent="center">
-      {cardData?.map((card, index) => (
-        <Grid
-          size={{ xs: 12, sm: 6, md: 6 }} // Adjusting sizes for different breakpoints
-          key={index}
-        >
-          <StyledCard
-            variant="outlined"
-            onFocus={() => handleFocus(index)}
-            onBlur={handleBlur}
-            tabIndex={0}
-            className={focusedCardIndex === index ? 'Mui-focused' : ''}
-            sx={cardStyles}
+    <>
+      <Grid container spacing={2} columns={12} justifyContent="center">
+        {cardData?.map((card, index) => (
+          <Grid
+            size={{ xs: 12, sm: 6, md: 6 }}
+            key={index}
           >
-            <CardMedia
-              component="img"
-              alt={card.name}
-              image={card.image}
-              sx={{
-                aspectRatio: '16 / 9',
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-                ...mediaStyles,
-              }}
-            />
-            <StyledCardContent sx={contentStyles}>
-              <Stack direction="row" justifyContent="space-between" alignItems="baseline" width="100%">
-                <Typography gutterBottom variant="caption" component="div">
-                  {card.name}
+            <StyledCard
+              variant="outlined"
+              onFocus={() => handleFocus(index)}
+              onBlur={handleBlur}
+              tabIndex={0}
+              className={focusedCardIndex === index ? 'Mui-focused' : ''}
+              sx={cardStyles}
+            >
+              <CardMedia
+                component="img"
+                alt={card.name}
+                image={card.image}
+                sx={{
+                  aspectRatio: '16 / 9',
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  ...mediaStyles,
+                }}
+              />
+              <StyledCardContent sx={contentStyles}>
+                <Stack direction="row" justifyContent="space-between" alignItems="baseline" width="100%">
+                  <Typography gutterBottom variant="caption" component="div">
+                    {card.name}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary" gutterBottom>
+                    {card.tag.charAt(0).toUpperCase() + card.tag.slice(1)}
+                  </Typography>
+                </Stack>
+                <Typography gutterBottom variant="h6" component="div">
+                  {card.description}
                 </Typography>
-                <Typography variant="caption" color="text.secondary" gutterBottom>
-                {card.tag.charAt(0).toUpperCase() + card.tag.slice(1)}
-                </Typography>
-              </Stack>
-              <Typography gutterBottom variant="h6" component="div">
-                {card.description}
-              </Typography>
 
-              <Box>
-                {card.recipe.map((rec, index) => (
-                  <Typography
-                    key={index}
-                    variant="caption"
-                    color="text.secondary"
-                    component="span"
-                  >
-                    {index > 0 && ", "} {rec.ingredient} {rec.amount}
+                <Box>
+                  {card.recipe.map((rec, index) => (
+                    <Typography
+                      key={index}
+                      variant="caption"
+                      color="text.secondary"
+                      component="span"
+                    >
+                      {index > 0 && ", "} {rec.ingredient} {rec.amount}
+                    </Typography>
+                  ))}
+                </Box>
+
+                {card.similar_drinks && card.similar_drinks.length > 0 && (
+                  <div>
+                    <Typography variant="subtitle2" color="text.primary" gutterBottom align="center">
+                      Similar Drinks:
+                    </Typography>
+                    <Box display="flex" justifyContent="center" gap={2} flexWrap="wrap">
+                      {card.similar_drinks.map((similar, index) => (
+                       <Chip
+                       key={index}
+                       label={similar.drink}
+                       variant="outlined" 
+                       onClick={() => handleSimilarDrinkClick(similar.drink)}
+                       style={{ cursor: 'pointer' }}
+                       color="secondary" 
+                     />
+                      ))}
+                    </Box>
+                  </div>
+                )}
+              </StyledCardContent>
+            </StyledCard>
+          </Grid>
+        ))}
+        
+      </Grid>
+
+      {selectedCocktail && (
+        <CustomModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          title={selectedCocktail.name}
+          content={
+            <Box>
+              <img src={selectedCocktail.image} alt={selectedCocktail.name} style={{ width: '100%', borderRadius: 4 }} />
+              <Typography variant="subtitle1" mt={2}>{selectedCocktail.description}</Typography>
+              <Box mt={2}>
+                {selectedCocktail.recipe.map((rec, index) => (
+                  <Typography key={index} variant="body2">
+                    {rec.ingredient}: {rec.amount}
                   </Typography>
                 ))}
               </Box>
-
-
-              {card.similar_drinks && card.similar_drinks.length > 0 && (
-                <div>
-                  <Typography variant="subtitle2" color="text.primary" gutterBottom align="center">
-                    Similar Drinks:
-                  </Typography>
-                  <Box display="flex" justifyContent="center" gap={2} flexWrap="wrap">
-                    {card.similar_drinks.map((similar, index) => (
-                      <Box key={index} display="flex" alignItems="center">
-                        <Typography variant="body2" color="text.secondary">
-                          <a href={similar.drink} target="_blank" rel="noopener noreferrer">{similar.drink}</a>
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
-                </div>
-              )}
-
-            </StyledCardContent>
-          </StyledCard>
-        </Grid>
-      ))}
-    </Grid>
-
-
-
+            </Box>
+          }
+        />
+      )}
+    </>
   );
 };
 
 export default CustomSlider;
+

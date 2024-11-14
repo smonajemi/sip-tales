@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid2'
 import CustomSlider from './cocktail_components/CustomSlider';
 import useHero from '../hooks/useHero';
+import classicCocktailData from './cocktail_components/cocktailList01.json'
 
 const Hero = () => {
   const {mockData, shuffledImages, fadeStates, capitalize } = useHero()
@@ -83,7 +84,7 @@ const Hero = () => {
       {/* Bottom Section with Cards */}
       <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
         <Grid size={{ xs: 12, sm: 6, md: 12 }} >
-          <CustomSlider cardData={mockData} />
+          <CustomSlider cardData={mockData} classicCocktailData={classicCocktailData} />
         </Grid>
       </Grid>
     </Box>
