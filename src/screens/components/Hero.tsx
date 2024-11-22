@@ -1,12 +1,23 @@
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid2'
-import CustomSlider from './cocktail_components/CustomSlider';
+import PictureCard from './cocktail_components/PictureCard';
 import useHero from '../hooks/useHero';
 import classicCocktailData from './cocktail_components/cocktailList01.json'
+import CocktailCard from './cocktail_components/CocktailCard';
 
 const Hero = () => {
-  const {mockData, shuffledImages, fadeStates, capitalize } = useHero()
+  const { mockData, shuffledImages, fadeStates, capitalize } = useHero()
+  const testData = [
+    { title: 'Margarita', url: '/margarita' },
+    { title: 'Negroni', url: '/negroni' },
+    { title: 'OF', url: '/old-fashioned' },
+    { title: 'Daiquiri', url: '/daiquiri' },
+    { title: 'Mojito', url: '/mojito' },
+    { title: 'Sour', url: '/whiskey-sour' },
+  ];
+  
+  
   const StyledBox = styled('div')(({ theme }) => ({
     alignSelf: 'center',
     width: '100%',
@@ -82,11 +93,13 @@ const Hero = () => {
       </Box>
 
       {/* Bottom Section with Cards */}
-      <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
+      {/* <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
         <Grid size={{ xs: 12, sm: 6, md: 12 }} >
-          <CustomSlider cardData={mockData} classicCocktailData={classicCocktailData} />
+          <PictureCard cardData={mockData} classicCocktailData={classicCocktailData} />
         </Grid>
-      </Grid>
+      </Grid> */}
+    <CocktailCard cardData={testData} />
+
     </Box>
 
 

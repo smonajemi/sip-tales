@@ -5,21 +5,12 @@ export interface ApplyStyles<K extends string> {
 }
 
 /**
- * A universal utility to style components with multiple color modes. Always use it from the theme object.
- * It works with:
- *  - [Basic theme](https://mui.com/material-ui/customization/dark-mode/)
- *  - [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/)
- *  - Zero-runtime engine
- *
- * Tips: Use an array over object spread and place `theme.applyStyles()` last.
- *
- * ✅ [{ background: '#e5e5e5' }, theme.applyStyles('dark', { background: '#1c1c1c' })]
- *
- * 🚫 { background: '#e5e5e5', ...theme.applyStyles('dark', { background: '#1c1c1c' })}
+ * A utility to style components specifically for dark mode.
+ * It assumes the app is only in dark mode and removes multi-color mode support.
  *
  * @example
  * 1. using with `styled`:
- * ```jsx
+ * ```tsx
  *   const Component = styled('div')(({ theme }) => [
  *     { background: '#e5e5e5' },
  *     theme.applyStyles('dark', {
@@ -31,7 +22,7 @@ export interface ApplyStyles<K extends string> {
  *
  * @example
  * 2. using with `sx` prop:
- * ```jsx
+ * ```tsx
  *   <Box sx={theme => [
  *     { background: '#e5e5e5' },
  *     theme.applyStyles('dark', {
@@ -41,53 +32,36 @@ export interface ApplyStyles<K extends string> {
  *     ]}
  *   />
  * ```
- *
- * @example
- * 3. theming a component:
- * ```jsx
- *   extendTheme({
- *     components: {
- *       MuiButton: {
- *         styleOverrides: {
- *           root: ({ theme }) => [
- *             { background: '#e5e5e5' },
- *             theme.applyStyles('dark', {
- *               background: '#1c1c1c',
- *               color: '#fff',
- *             }),
- *           ],
- *         },
- *       }
- *     }
- *   })
- *```
  */
-export default function applyStyles<K extends string>(key: K, styles: CSSObject) {
-  // @ts-expect-error this is 'any' type
-  const theme = this as {
-    palette: { mode: 'light' | 'dark' };
-    vars?: any;
-    colorSchemes?: Record<K, any>;
+export default function applyStyles<K extends string>(
+  this: {
+    palette: { mode: 'dark' };
+    vars?: Record<string, any>;
+    colorSchemes?: Record<string, any>;
     getColorSchemeSelector?: (scheme: string) => string;
-  };
-  if (theme.vars) {
-    if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {
+  },
+  _key: K,
+  styles: CSSObject
+): CSSObject {
+  // Handle styles when CSS variables are enabled
+  if (this.vars) {
+    if (!this.colorSchemes?.dark || typeof this.getColorSchemeSelector !== 'function') {
       return {};
     }
-    // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
-    let selector = theme.getColorSchemeSelector(key);
+    let selector = this.getColorSchemeSelector('dark');
     if (selector === '&') {
       return styles;
     }
     if (selector.includes('data-') || selector.includes('.')) {
-      // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
       selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
     }
     return {
       [selector]: styles,
     };
   }
-  if (theme.palette.mode === key) {
+
+  // Directly apply styles if the mode is 'dark'
+  if (this.palette.mode === 'dark') {
     return styles;
   }
 
