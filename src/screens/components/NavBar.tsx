@@ -3,7 +3,6 @@ import { AppBar, Box, Button, Container, Divider, Drawer, MenuItem, IconButton }
 import { Menu as MenuIcon, CloseRounded as CloseRoundedIcon } from '@mui/icons-material';
 import logoPic from '../../images/logo-tran.png';
 import useNav from '../hooks/useNav';
-import ColorModeIconDropdown from './ColorModeIconDropdown';
 interface NavBarProps {
   isDevice?: boolean;
   handleSmoothScroll: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
@@ -13,7 +12,6 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll, isLogin }) => {
   const { redirectTo, toggleDrawer, Logo, open, setOpen, StyledToolbar, } = useNav();
   const buttonItems = ['Features', 'Testimonials', 'Highlights', 'Pricing'];
-  const menuItems = ['Home'];
 
   const handleMenuItemClick = (e: React.MouseEvent<HTMLElement> | any, item: string) => {
     isLogin ? redirectTo('/') : handleSmoothScroll(e, item?.toLowerCase());
@@ -36,19 +34,6 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll, isLogin }
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Logo src={logoPic} onClick={() => redirectTo('/')} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              {(isLogin ? menuItems : buttonItems).map((item, index) => (
-                <Button
-                  variant="text"
-                  color="info"
-                  size="small"
-                  key={index}
-                  onClick={(e: any) => handleMenuItemClick(e, item)}
-                >
-                  {item}
-                </Button>
-              ))}
-            </Box>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
             <Button color="primary" variant="text" size="small" onClick={() => redirectTo('/signin')}>
@@ -78,11 +63,7 @@ const NavBar: React.FC<NavBarProps> = ({ isDevice, handleSmoothScroll, isLogin }
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                {(isLogin ? menuItems : buttonItems).map((item, index) => (
-                  <MenuItem key={index} onClick={(e: any) => handleMenuItemClick(e, item)}>
-                    {item}
-                  </MenuItem>
-                ))}
+          
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth onClick={() => redirectTo('/signup')}>
