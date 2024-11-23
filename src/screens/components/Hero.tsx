@@ -1,9 +1,8 @@
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid2'
-import PictureCard from './cocktail_components/PictureCard';
 import useHero from '../hooks/useHero';
-import classicCocktailData from './cocktail_components/cocktailList01.json'
+
 import CocktailCard from './cocktail_components/CocktailCard';
 
 const Hero = () => {

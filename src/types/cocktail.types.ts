@@ -1,12 +1,18 @@
-export interface Cocktail {
-    id: string;
+export interface CocktailTypes {
+    id?: string;
     image: string;
     tag: string;
     ingredients: string[];
     description: string;
-    recipe: { ingredient: string; amount: string }[];
+    recipe: { ingredient: string; amount?: string }[];
     name: string;
     similar_drinks?: { drink: string; description: string }[];
 }
 
-export type CocktailResponse = Cocktail[];
+export interface CocktailCardTypes {
+    id?: string;
+    title: string;
+    description: string;
+    content?: React.ReactNode;
+  }
+export type CocktailResponse = CocktailTypes[];

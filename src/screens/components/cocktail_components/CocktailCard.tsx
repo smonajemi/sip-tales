@@ -3,6 +3,8 @@ import Grid from "@mui/material/Grid2";
 import { LocalBar as LocalBarIcon } from "@mui/icons-material"
 import { useNavigate } from "react-router-dom";
 import { useResponsiveness } from "../../../components/hooks/useResponsiveness";
+import { useState } from "react";
+import { CocktailCardTypes } from "../../../types";
 
 interface CocktailCardProps {
   cardData: {
@@ -14,7 +16,14 @@ interface CocktailCardProps {
 const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
   const navigate = useNavigate();
   const {isDevice} = useResponsiveness()
-
+  const [isCocktailCard, setCocktailCard] = useState<CocktailCardTypes | null>(null);
+  const handleCocktailCard = (data: any, id: number) => {
+    if (data) {
+      navigate(`/cocktail/${id}`, { state: { data } });
+    } else {
+      alert('Data is null or undefined. Cannot navigate.');
+    }
+  };
   return (
     <Grid
     container
@@ -48,7 +57,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
             },
           }}
           onClick={() => {
-            navigate(card.url);
+            handleCocktailCard({ title: card.title, content: `Content for ${card.title}` }, index);
           }}
         >
           <CardContent

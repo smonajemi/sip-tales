@@ -4,11 +4,12 @@ import Grid from '@mui/material/Grid2';
 import * as React from 'react';
 import { SearchRounded as SearchRoundedIcon } from '@mui/icons-material'
 import useCocktail from './hooks/useCocktail';
-import cocktailDataList from './cocktailList01.json'
+import cocktailDataList from './cocktailData/cocktailList01.json'
 import { useState } from 'react';
 import CustomPagination from '../../../components/CustomPagination';
 import CustomSnackbar from '../../../components/CustomSnackbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useResponsiveness } from '../../../components/hooks/useResponsiveness';
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -49,24 +50,6 @@ const StyledTypography = styled(Typography)({
   textOverflow: 'ellipsis',
 });
 
-const Search = () => (
-  <FormControl sx={{ width: { xs: '100%', md: '25ch' } }} variant="outlined">
-    <OutlinedInput
-      size="small"
-      id="search"
-      placeholder="Search…"
-      sx={{ flexGrow: 1 }}
-      startAdornment={
-        <InputAdornment position="start" sx={{ color: 'text.primary' }}>
-          <SearchRoundedIcon fontSize="small" />
-        </InputAdornment>
-      }
-      inputProps={{
-        'aria-label': 'search',
-      }}
-    />
-  </FormControl>
-);
 
 interface CocktailContentProps {
   isLoggedIn: boolean
@@ -74,11 +57,13 @@ interface CocktailContentProps {
 
 const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
   const { focusedCardIndex, handleFocus, handleBlur, mockData, categories } = useCocktail();
+  const {isDevice} = useResponsiveness()
+  const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All categories');
   const [page, setPage] = useState(1);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const ITEMS_PER_PAGE = 6; // Adjust based on how many items per page you want
+  const ITEMS_PER_PAGE = 6
 
   const handleSearchChange = (event: any) => {
     setSearchQuery(event.target.value.toLowerCase());
@@ -109,9 +94,14 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
   );
 
 
-  const handleCardClick = () => {
-    if (!isLoggedIn) {
-      setSnackbarOpen(true); // Always set to true on card click
+  const handleCardClick = (data: any, id: string) => {
+    // if (!isLoggedIn) {
+    //   setSnackbarOpen(true); // Always set to true on card click
+    // }
+    if (data) {
+      navigate(`/cocktail/${id}?name=${data.title}`, { state: { data } });
+    } else {
+      alert('Data is null or undefined. Cannot navigate.');
     }
   };
 
@@ -120,51 +110,115 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
     setSnackbarOpen(false);
   };
 
+  
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      {/* Search Input */}
-      <FormControl sx={{ width: { xs: '100%', md: '25ch' } }} variant="outlined">
-        <OutlinedInput
-          size="small"
-          id="search"
-          placeholder="Search…"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          sx={{ flexGrow: 1 }}
-          startAdornment={
-            <InputAdornment position="start" sx={{ color: 'text.primary' }}>
-              <SearchRoundedIcon fontSize="small" />
-            </InputAdornment>
-          }
-          inputProps={{
-            'aria-label': 'search',
-          }}
-        />
-      </FormControl>
 
-      {/* Category Chips */}
-      <Box sx={{ display: 'inline-flex', flexDirection: 'row', gap: 3, overflow: 'auto' }}>
-        {categories.map((category) => (
-          <Chip
-            key={category}
-            onClick={() => handleCategoryClick(category)}
-            size="medium"
-            label={category}
+      {!isDevice ? (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between', // Ensures search moves to the far right
+            flexWrap: 'nowrap', // Prevents wrapping
+            gap: 2,
+            width: '100%',
+          }}
+        >
+          {/* Category Chips */}
+          <Box
             sx={{
-              backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
-              border: 'none',
+              display: 'inline-flex',
+              flexDirection: 'row',
+              gap: 3,
+              overflow: 'auto',
             }}
-          />
-        ))}
-      </Box>
+          >
+            {categories.map((category) => (
+              <Chip
+                key={category}
+                onClick={() => handleCategoryClick(category)}
+                size="medium"
+                label={category}
+                sx={{
+                  backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
+                  border: 'none',
+                }}
+              />
+            ))}
+          </Box>
+
+          {/* Search Input */}
+          <FormControl sx={{ width: { xs: '50%', md: '25ch' } }} variant="outlined">
+            <OutlinedInput
+              size="small"
+              id="search"
+              placeholder="Search…"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              sx={{ flexGrow: 1 }}
+              startAdornment={
+                <InputAdornment position="start" sx={{ color: 'text.primary' }}>
+                  <SearchRoundedIcon fontSize="small" />
+                </InputAdornment>
+              }
+              inputProps={{
+                'aria-label': 'search',
+              }}
+            />
+          </FormControl>
+        </Box>
+      ) : (
+        <>
+          {/* Search Input */}
+          <FormControl sx={{ width: { xs: '100%', md: '25ch' } }} variant="outlined">
+            <OutlinedInput
+              size="small"
+              id="search"
+              placeholder="Search…"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              sx={{ flexGrow: 1 }}
+              startAdornment={
+                <InputAdornment position="start" sx={{ color: 'text.primary' }}>
+                  <SearchRoundedIcon fontSize="small" />
+                </InputAdornment>
+              }
+              inputProps={{
+                'aria-label': 'search',
+              }}
+            />
+          </FormControl>
+
+          {/* Category Chips */}
+          <Box sx={{ display: 'inline-flex', flexDirection: 'row', gap: 3, overflow: 'auto' }}>
+            {categories.map((category) => (
+              <Chip
+                key={category}
+                onClick={() => handleCategoryClick(category)}
+                size="medium"
+                label={category}
+                sx={{
+                  backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
+                  border: 'none',
+                }}
+              />
+            ))}
+          </Box>
+
+        </>
+      )}
 
       {/* Filtered Cocktail List */}
       <Grid container spacing={4}>
         {paginatedCocktails.map((card, index) => (
           <Grid
             key={index}
-            size={{ xs: 12, sm: 6, md: 4 }}
-            onClick={handleCardClick}
+            size={{ xs: 6, sm: 6, md: 4 }}
+            onClick={() => {
+              handleCardClick({ title: card.name, content: `${card.description}` }, card.id);
+            }}
             onFocus={() => handleFocus(index)}
             onBlur={handleBlur}
             style={{

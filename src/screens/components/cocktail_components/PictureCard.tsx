@@ -1,16 +1,16 @@
 import { Card, Typography, CardMedia, styled, CardContent, Box, List, ListItem, Stack, Chip } from "@mui/material";
 import { FC, useRef, useEffect, useState } from "react";
-import { Cocktail } from "../../../types/cocktail.types";
+import { CocktailTypes } from "../../../types/cocktail.types";
 import Grid from "@mui/material/Grid2";
 import CustomModal from "../../../components/CustomModal";
 
 interface CustomSliderProps {
-  cardData: Cocktail[];
+  cardData: CocktailTypes[];
   autoPlay?: number;
   cardStyles?: object;
   mediaStyles?: object;
   contentStyles?: object;
-  classicCocktailData: Cocktail[];
+  classicCocktailData: CocktailTypes[];
 }
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -52,7 +52,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
 }) => {
   const autoPlayRef = useRef<() => void>();
   const [focusedCardIndex, setFocusedCardIndex] = useState<number | null>(null);
-  const [selectedCocktail, setSelectedCocktail] = useState<Cocktail | null>(null);
+  const [selectedCocktail, setSelectedCocktail] = useState<CocktailTypes | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFocus = (index: number) => setFocusedCardIndex(index);

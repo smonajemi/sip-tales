@@ -2,6 +2,7 @@ import LandingPage from "../screens/Landing";
 import ErrorPage from "../screens/Error";
 import Login from '../screens/Login'
 import Checkout from '../screens/components/checkout_components/Checkout'
+import DynamicPage from "../screens/DynamicPage"
 
 interface RouteType {
   path: string;
@@ -11,6 +12,12 @@ interface RouteType {
 }
 
 const routes: RouteType[] = [
+  {
+    path: "/cocktail/:id",
+    component: DynamicPage, // Use the DynamicPage component directly
+    name: "Dynamic Page",
+    protected: false,
+  },
   {
     path: "/",
     component: LandingPage,

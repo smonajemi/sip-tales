@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { heroImages } from "../../images/image";
-import { Cocktail } from "../../types";
+import { CocktailTypes } from "../../types";
 
 
-const mockData: Cocktail[] = [
+const mockData: CocktailTypes[] = [
   {
     id: "1",
     name: "Negroni",
