@@ -4,9 +4,11 @@ import Grid from '@mui/material/Grid2'
 import useHero from '../hooks/useHero';
 
 import CocktailCard from './cocktail_components/CocktailCard';
+import { useResponsiveness } from '../../components/hooks/useResponsiveness';
 
 const Hero = () => {
   const { mockData, shuffledImages, fadeStates, capitalize } = useHero()
+  const {isDevice} = useResponsiveness()
   const testData = [
     { title: 'Margarita', url: '/margarita' },
     { title: 'Negroni', url: '/negroni' },
@@ -53,6 +55,7 @@ const Hero = () => {
         width: '100%', // Optional: adjust to fit your layout needs
         maxWidth: '1200px', // Optional: set a max-width if needed
         margin: '0 auto', // Optional: centers the container
+        boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
 
       }}>
         {shuffledImages.map((imgSrc, index) => (
@@ -61,7 +64,7 @@ const Hero = () => {
             sx={{
               position: 'relative',
               flex: '1 1 25%',
-              height: '300px',
+              height: isDevice ? '10vh' : '15vh',
               overflow: 'hidden',
               opacity: fadeStates[index] ? 0 : 1,
               transition: 'opacity 0.5s ease-in-out',

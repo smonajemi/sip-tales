@@ -45,7 +45,6 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
             width: isDevice ? 100 : { xs: 120, sm: 300 }, // Smaller width for mobile
             height: isDevice ? 100 : { xs: 120, sm: 200 }, // Smaller height for mobile
             display: "flex",
-            boxShadow: "0 26px 24px 12px hsla(210, 100%, 25%, 0.2)",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",

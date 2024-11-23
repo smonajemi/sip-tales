@@ -217,7 +217,7 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
             key={index}
             size={{ xs: 6, sm: 6, md: 4 }}
             onClick={() => {
-              handleCardClick({ title: card.name, content: `${card.description}` }, card.id);
+              handleCardClick({ title: card.name, description: card.description }, card.id);
             }}
             onFocus={() => handleFocus(index)}
             onBlur={handleBlur}

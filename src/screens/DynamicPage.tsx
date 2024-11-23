@@ -13,7 +13,7 @@ const DynamicPage = () => {
           {data?.title}
         </Typography>
         <Typography variant="body1" paragraph>
-          Description for {data?.description}
+          {data?.description}
         </Typography>
         <Box>{data.content || "No content available"}</Box>
       </Box>
