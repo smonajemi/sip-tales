@@ -98,9 +98,9 @@ const LandingPage: React.FC<LandingPageProps> = ({
       >
         <CocktailContent isLoggedIn={true} />
         <Features />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <Highlights isDevice={isDevice} listItems={listItems} />
-        <Pricing />
+        {/* <Pricing /> */}
         {/* <CocktailBlog /> */}
         <Footer handleSmoothScroll={handleSmoothScroll} />
       </Container>
