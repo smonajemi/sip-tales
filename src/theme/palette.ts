@@ -1,7 +1,7 @@
 // src/theme/palette.ts
 const palette = {
     background: {
-      default: '#ffffff',
+      default: '#121212',
       paper: '#f5f5f5',
     },
     divider: '#e0e0e0',
@@ -11,13 +11,9 @@ const palette = {
       title: '#D87A3D',  // Custom title color
     },
     primary: {
-      main: '#1976d2',
-      light: '#63a4ff',
       dark: '#004ba0',
     },
     success: {
-      main: '#4caf50',
-      light: '#80e27e',
       dark: '#087f23',
     },
     grey: {

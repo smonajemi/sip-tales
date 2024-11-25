@@ -37,7 +37,7 @@ const tiers = [
     ],
     buttonText: 'Start now',
     buttonVariant: 'contained',
-    buttonColor: 'secondary',
+    buttonColor: 'primary',
   },
   {
     title: 'Premium',
@@ -51,14 +51,14 @@ const tiers = [
       'Early access to new features'
     ],
     buttonText: 'Join Premium',
-    buttonVariant: 'contained',
+    buttonVariant: 'outlined',
     buttonColor: 'primary',
   },
 ];
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = React.useState('monthly');
-  const {goToCheckout} = useNavigation();
+  const {goToSignUp} = useNavigation();
 
   const handleBillingCycleChange = (event: any) => {
     setBillingCycle(event.target.value);
@@ -173,8 +173,6 @@ const Pricing = () => {
                           width: 20,
                         },
                         tier.title === 'Professional'
-                          ? { color: 'primary.light' }
-                          : { color: 'primary.main' },
                       ]}
                     />
                     <Typography
@@ -192,7 +190,7 @@ const Pricing = () => {
                   fullWidth
                   variant={tier.buttonVariant as 'outlined' | 'contained'}
                   color={tier.buttonColor as 'primary' | 'secondary'}
-                  onClick={goToCheckout}
+                  onClick={goToSignUp}
                 >
                   {tier.buttonText}
                 </Button>

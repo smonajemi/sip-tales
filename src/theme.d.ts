@@ -2,40 +2,35 @@ import { Theme as MuiTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Theme {
-    vars?: {
+    vars: {
       palette: {
         background: {
-          default: string;
-          paper: string;
+          default: string; // Dark mode background
+          paper: string;   // Slightly lighter for cards or modals
         };
-        divider: string;
         text: {
-          primary: string;
-          secondary: string;
-          title: string;   // Added title color
+          primary: string;  // High contrast text
+          secondary: string; // Subtle text color
+          title: string;    // Special color for titles or headings
         };
+        divider: string;     // Divider color for dark mode
         primary: {
-          main: string;
-          light: string;
-          dark: string;
+          dark: string;     // Core primary color for dark mode
         };
         success: {
-          main: string;
-          light: string;
-          dark: string;
+          dark: string;     // Success indicator for dark mode
         };
-        grey: Record<string, string>;
-        defaultChannel: string;  // Added defaultChannel
-        customColor: string;      // Added custom color
+        grey: Record<string, string>; // Greyscale shades for dark mode
+        customColor: string;          // Optional custom use
       };
       shape: {
-        borderRadius: number;
+        borderRadius: number; // Component border radius
       };
-      shadows: string[];  // Added shadows
+      shadows: string[];       // Shadows optimized for dark mode
     };
   }
 
-  // allow configuration using `createTheme`
+  // Allow configuration using `createTheme`
   interface ThemeOptions {
     vars?: {
       palette?: {
@@ -43,30 +38,24 @@ declare module '@mui/material/styles' {
           default?: string;
           paper?: string;
         };
-        divider?: string;
         text?: {
           primary?: string;
           secondary?: string;
-          title?: string;   // Added title color
+          title?: string;
         };
         primary?: {
-          main?: string;
-          light?: string;
           dark?: string;
         };
         success?: {
-          main?: string;
-          light?: string;
           dark?: string;
         };
         grey?: Record<string, string>;
-        defaultChannel?: string;  // Added defaultChannel
-        customColor?: string;      // Added custom color
+        customColor?: string;
       };
       shape?: {
         borderRadius?: number;
       };
-      shadows?: string[];  // Added shadows
+      shadows?: string[];
     };
   }
 }

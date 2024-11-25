@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StyledEngineProvider } from '@mui/material';
+import { LoadingProvider } from './components/LoadingProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
+  <StyledEngineProvider injectFirst>
+    <LoadingProvider> {/* Wrap the App with the LoadingProvider */}
       <App />
-    </StyledEngineProvider>
-  </React.StrictMode>
+    </LoadingProvider>
+  </StyledEngineProvider>
+</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

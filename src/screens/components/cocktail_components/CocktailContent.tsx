@@ -142,7 +142,7 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
                 size="medium"
                 label={category}
                 sx={{
-                  backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
+                  backgroundColor: category === selectedCategory ? 'primary.dark' : 'transparent',
                   border: 'none',
                 }}
               />
@@ -200,7 +200,7 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
                 size="medium"
                 label={category}
                 sx={{
-                  backgroundColor: category === selectedCategory ? 'primary.main' : 'transparent',
+                  backgroundColor: category === selectedCategory ? 'primary.dark' : 'transparent',
                   border: 'none',
                 }}
               />

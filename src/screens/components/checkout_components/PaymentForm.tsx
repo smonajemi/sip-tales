@@ -25,7 +25,7 @@ const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
   '&:hover': {
     background:
       'linear-gradient(to bottom right, hsla(210, 100%, 97%, 0.5) 25%, hsla(210, 100%, 90%, 0.3) 100%)',
-    borderColor: 'primary.light',
+    borderColor: 'primary.dark',
     boxShadow: '0px 2px 8px hsla(0, 0%, 0%, 0.1)',
     ...theme.applyStyles('dark', {
       background:
@@ -42,10 +42,7 @@ const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
     {
       props: ({ selected }) => selected,
       style: {
-        borderColor: (theme.vars || theme).palette.primary.light,
-        ...theme.applyStyles('dark', {
-          borderColor: (theme.vars || theme).palette.primary.dark,
-        }),
+        borderColor: (theme.vars || theme).palette.primary.dark,
       },
     },
   ],
@@ -152,7 +149,7 @@ const PaymentForm = () => {
                       }),
                     }),
                     paymentType === 'creditCard' && {
-                      color: 'primary.main',
+                      color: 'primary.dark',
                     },
                   ]}
                 />
@@ -183,7 +180,7 @@ const PaymentForm = () => {
                       }),
                     }),
                     paymentType === 'bankTransfer' && {
-                      color: 'primary.main',
+                      color: 'primary.dark',
                     },
                   ]}
                 />

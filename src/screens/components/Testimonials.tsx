@@ -82,7 +82,7 @@ const logoStyle = {
 
 const Testimonials = () => {
   const theme = useTheme();
-  const logos = theme.palette.mode === 'light' ? darkLogos : whiteLogos;
+  const logos = darkLogos;
 
   return (
     <Container

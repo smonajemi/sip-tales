@@ -12,8 +12,9 @@ const useNavigation = () => {
 
   const goToHome = useCallback(() => goTo('/'), [goTo]);
   const goToCheckout = useCallback(() => goTo('/checkout'), [goTo]);
+  const goToSignUp = useCallback(() => goTo('/signup'), [goTo]);
 
-  return { goTo, goToHome, goToCheckout } as const;
+  return { goTo, goToHome, goToCheckout, goToSignUp } as const;
 };
 
 export default useNavigation;

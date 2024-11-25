@@ -237,21 +237,21 @@ export const navigationCustomizations: Components<Theme> = {
         },
         '&.Mui-active': {
           border: 'none',
-          color: (theme.vars || theme).palette.primary.main,
+          color: (theme.vars || theme).palette.primary.dark,
         },
         '&.Mui-completed': {
           border: 'none',
-          color: (theme.vars || theme).palette.success.main,
+          color: (theme.vars || theme).palette.success.dark,
         },
         ...theme.applyStyles('dark', {
           border: `1px solid ${gray[700]}`,
           '&.Mui-active': {
             border: 'none',
-            color: (theme.vars || theme).palette.primary.light,
+            color: (theme.vars || theme).palette.primary.dark,
           },
           '&.Mui-completed': {
             border: 'none',
-            color: (theme.vars || theme).palette.success.light,
+            color: (theme.vars || theme).palette.success.dark,
           },
         }),
         variants: [

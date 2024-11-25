@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { useEffect, lazy } from 'react';
 import NavBar from './components/NavBar';
 import { Container, CssBaseline, PaletteMode } from '@mui/material';
 import Hero from './components/Hero';
@@ -15,12 +15,21 @@ import {
 
 import CustomLoader from '../components/CustomLoader';
 import useAuth from '../components/hooks/useAuth';
+import { useLoading } from '../components/LoadingProvider';
+
 interface LandingPageProps {
   mode: PaletteMode;
   toggleColorMode: () => void;
   toggleCustomTheme: () => void;
   showCustomTheme: boolean;
 }
+
+const CocktailContent = lazy(() => import('./components/cocktail_components/CocktailContent'));
+const Features = lazy(() => import('./components/Features'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Highlights = lazy(() => import('./components/Highlights'));
+const Pricing = lazy(() => import('./components/Pricing'));
+const Footer = lazy(() => import('./components/Footer'));
 
 const LandingPage: React.FC<LandingPageProps> = ({
   mode,
@@ -30,15 +39,8 @@ const LandingPage: React.FC<LandingPageProps> = ({
   ...props
 }) => {
   const { isDevice, handleSmoothScroll } = useResponsiveness();
-  const {isLoggedIn} = useAuth()
-  
-  // Lazy loading components
-  const CocktailContent = React.lazy(() => import('./components/cocktail_components/CocktailContent'));
-  const Features = React.lazy(() => import('./components/Features'));
-  const Testimonials = React.lazy(() => import('./components/Testimonials'));
-  const Highlights = React.lazy(() => import('./components/Highlights'));
-  const Pricing = React.lazy(() => import('./components/Pricing'));
-  const Footer = React.lazy(() => import('./components/Footer'));
+  const { isLoggedIn } = useAuth();
+  const { loading, setLoading } = useLoading(); // Access loading context
 
   const listItems = [
     {
@@ -73,35 +75,34 @@ const LandingPage: React.FC<LandingPageProps> = ({
     },
   ];
 
+  useEffect(() => {
+    // Manage global loading state while lazy components are resolving
+    setLoading(true);
+    const lazyLoadTimer = setTimeout(() => setLoading(false), 500); // Simulate loading time
+    return () => clearTimeout(lazyLoadTimer);
+  }, [setLoading]);
+
+  if (loading) {
+    return <CustomLoader message="Loading Landing Page..." />;
+  }
+
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <NavBar isDevice={isDevice} handleSmoothScroll={handleSmoothScroll} />
       <Hero />
-      <Container   
+      <Container
         maxWidth="lg"
         component="main"
         sx={{ display: 'flex', flexDirection: 'column', my: 10, gap: 4 }}
       >
-         <Suspense fallback={<CustomLoader />}>
-          <CocktailContent isLoggedIn={true}  />
-        </Suspense>
-        <Suspense fallback={<CustomLoader  />}>
-          <Features />
-        </Suspense>
-        <Suspense fallback={<CustomLoader />}>
-          <Testimonials />
-        </Suspense>
-        <Suspense fallback={<CustomLoader  />}>
-          <Highlights isDevice={isDevice} listItems={listItems} />
-        </Suspense>
-        <Suspense fallback={<CustomLoader />}>
-          <Pricing />
-        </Suspense>
+        <CocktailContent isLoggedIn={isLoggedIn} />
+        <Features />
+        <Testimonials />
+        <Highlights isDevice={isDevice} listItems={listItems} />
+        <Pricing />
         {/* <CocktailBlog /> */}
-        <Suspense fallback={<CustomLoader />}>
-          <Footer handleSmoothScroll={handleSmoothScroll} />
-        </Suspense>
+        <Footer handleSmoothScroll={handleSmoothScroll} />
       </Container>
     </AppTheme>
   );

@@ -39,7 +39,7 @@ export interface Theme extends CssContainerQueries {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;
-  palette: Record<string, any> & { mode: 'light' | 'dark' };
+  palette: Record<string, any> & { mode: 'dark' };
   shadows?: Shadows;
   spacing: Spacing;
   transitions?: Transitions;
@@ -47,7 +47,7 @@ export interface Theme extends CssContainerQueries {
   mixins?: Mixins;
   typography?: Typography;
   zIndex?: ZIndex;
-  applyStyles: ApplyStyles<'light' | 'dark'>;
+  applyStyles: ApplyStyles<'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
 }

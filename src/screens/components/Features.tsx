@@ -20,7 +20,6 @@ const items = [
     title: 'Recipe Search & Discovery',
     description:
       'Discover a wide range of cocktail recipes, complete with detailed history and unique bartender tips that bring your drinks to life.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/dash-light.png")`,
     imageDark: `url(${featuredImage01})`,
   },
   {
@@ -28,7 +27,6 @@ const items = [
     title: 'Personalized Bartender Tips',
     description:
       'Learn cocktail crafting secrets from real bartenders, including measurements, techniques, and ingredient swaps for a professional touch.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/mobile-light.png")`,
     imageDark: `url(${featuredImage02})`,
   },
   {
@@ -36,7 +34,6 @@ const items = [
     title: 'Cocktail History & Storytelling',
     description:
       'Discover the stories behind your favorite cocktails with Sip&Tales. Learn the history, legends, and interesting facts about each drink to make your bartending experience even more enjoyable.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/devices-light.png")`,
     imageDark: `url(${featuredImage03})`,
   },
 ];
@@ -54,13 +51,11 @@ const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
         background:
           'linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))',
         color: 'hsl(0, 0%, 100%)',
-        borderColor: theme.palette.primary.light, // Access palette directly
+        borderColor: theme.palette.primary.dark, // Adjust for dark mode if necessary
         '& .MuiChip-label': {
           color: 'hsl(0, 0%, 100%)',
         },
-        ...theme.palette.mode === 'dark' && {
-          borderColor: theme.palette.primary.dark, // Adjust for dark mode if necessary
-        },
+
       },
     },
   ],
@@ -113,11 +108,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: 280,
-            backgroundImage: 'var(--items-imageLight)',  // These use custom properties
-            ...theme.palette.mode === 'dark' && {
-              backgroundImage: 'var(--items-imageDark)',
-            },
-            '--items-imageLight': items[selectedItemIndex]?.imageLight || '',
+            backgroundImage: 'var(--items-imageDark)',  // These use custom properties
             '--items-imageDark': items[selectedItemIndex]?.imageDark || '',
           })}
 
@@ -273,13 +264,7 @@ const Features: React.FC = () => {
                 width: 420,
                 height: 400,
                 backgroundSize: 'cover',
-                backgroundImage: 'var(--items-imageLight)',
-                ...theme.applyStyles('dark', {
-                  backgroundImage: 'var(--items-imageDark)',
-
-                }),
-
-                '--items-imageLight': items[selectedItemIndex]?.imageLight ?? '',
+                backgroundImage: 'var(--items-imageDark)',
                 '--items-imageDark': items[selectedItemIndex]?.imageDark ?? '',
 
               })}

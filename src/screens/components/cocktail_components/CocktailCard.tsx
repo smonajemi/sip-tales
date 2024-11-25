@@ -54,6 +54,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
               transform: "scale(1.05)",
               boxShadow: "0 32px 30px 14px hsla(210, 100%, 25%, 0.3)",
             },
+            background: '#121212'
           }}
           onClick={() => {
             handleCocktailCard({ title: card.title, content: `Content for ${card.title}` }, index);
@@ -81,7 +82,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
               <Grid>
                 <LocalBarIcon
                   fontSize={isDevice ? "small" : "large"} // Smaller icon size for mobile
-                  sx={{ color: "primary.main" }}
+                  sx={{ color: "primary.dark" }}
                 />
               </Grid>
   
