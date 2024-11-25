@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { heroImages } from "../../images/image";
-import { CocktailTypes } from "../../types";
+import { CocktailTypes, PageTypes } from "../../types";
 
 
 const mockData: CocktailTypes[] = [
@@ -80,9 +80,53 @@ const shuffleArray = (array: readonly string[]): string[] => {
   return shuffled.slice(0, 4);
 };
 const capitalize = (text: string | undefined): string => {
-    if (!text) return '';
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  };
+  if (!text) return '';
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+};
+
+const testData: PageTypes[] = [
+  {
+    title: 'Cocktail Finder',
+    description: 'Find your favorite cocktails.',
+    content: 'A tool to search and discover cocktails with detailed recipes.',
+    imageUrl: heroImages[2],
+    url: '/cocktails/find',
+    iconName: 'search', // Example icon name
+  },
+  {
+    title: 'Books',
+    description: 'Explore cocktail-related books.',
+    content: 'A curated selection of books for cocktail enthusiasts.',
+    imageUrl: heroImages[3],
+    url: '/cocktails/books',
+    iconName: 'book', // Example icon name
+  },
+  {
+    title: 'AI Cocktail',
+    description: 'AI-powered cocktail suggestions.',
+    content: 'Get personalized cocktail recommendations based on your preferences.',
+    imageUrl: heroImages[5],
+    url: '/cocktails/aicocktails',
+    iconName: 'robot', // Example icon name
+  },
+  {
+    title: 'Tales',
+    description: 'Discover the stories behind cocktails.',
+    content: 'Learn about the history and origins of famous cocktails.',
+    imageUrl: heroImages[8],
+    url: '/cocktails/tales',
+    iconName: 'story', // Example icon name
+  },
+  {
+    title: 'Whiskey',
+    description: 'All about whiskey cocktails.',
+    content: 'Discover, learn, and create whiskey-based drinks.',
+    imageUrl: heroImages[2],
+    url: '/cocktails/whiskey',
+    iconName: 'whiskey', // Example icon name
+  },
+];
+
 
 const useHero = () => {
   const [shuffledImages, setShuffledImages] = useState<string[]>(shuffleArray(heroImages));
@@ -119,7 +163,7 @@ const useHero = () => {
     return () => clearInterval(interval);
   }, [shuffledImages]);
 
-  return { mockData, shuffledImages, fadeStates, capitalize };
+  return { mockData, shuffledImages, fadeStates, capitalize, testData, heroImages };
 };
 
 export default useHero;

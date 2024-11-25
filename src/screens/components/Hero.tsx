@@ -5,45 +5,11 @@ import useHero from '../hooks/useHero';
 
 import CocktailCard from './cocktail_components/CocktailCard';
 import { useResponsiveness } from '../../components/hooks/useResponsiveness';
-
+import PictureCard from './cocktail_components/PictureCard';
+import classicCocktailData from '../components/cocktail_components/cocktailData/cocktailList01.json'
 const Hero = () => {
-  const { mockData, shuffledImages, fadeStates, capitalize } = useHero()
+  const { mockData, shuffledImages, fadeStates, testData } = useHero()
   const {isDevice} = useResponsiveness()
-  const testData = [
-    { title: 'Margarita', url: '/margarita' },
-    { title: 'Negroni', url: '/negroni' },
-    { title: 'OF', url: '/old-fashioned' },
-    { title: 'Daiquiri', url: '/daiquiri' },
-    { title: 'Mojito', url: '/mojito' },
-    { title: 'Sour', url: '/whiskey-sour' },
-  ];
-  
-  
-  const StyledBox = styled('div')(({ theme }) => ({
-    alignSelf: 'center',
-    width: '100%',
-    height: 400,
-    marginTop: theme.spacing(8),
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    outline: '6px solid',
-    outlineColor: 'hsla(220, 25%, 80%, 0.2)',
-    border: '1px solid',
-    borderColor: (theme.vars || theme).palette.grey[200],
-    // boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
-    backgroundImage: `url(${process.env.TEMPLATE_IMAGE_URL || 'src'})`,
-    backgroundSize: 'cover',
-    [theme.breakpoints.up('sm')]: {
-      marginTop: theme.spacing(10),
-      height: 700,
-    },
-    ...theme.applyStyles('dark', {
-      boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
-      backgroundImage: `url(${process.env.TEMPLATE_IMAGE_URL || 'src'})`,
-      outlineColor: 'hsla(220, 20%, 42%, 0.1)',
-      borderColor: (theme.vars || theme).palette.grey[700],
-    }),
-  }));
-
 
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', marginTop: 15 }}>
@@ -93,11 +59,9 @@ const Hero = () => {
           </Box>
         ))}
       </Box>
-
-      {/* Bottom Section with Cards */}
       {/* <Grid container spacing={2} sx={{ mt: 2, p: 1 }}>
         <Grid size={{ xs: 12, sm: 6, md: 12 }} >
-          <PictureCard cardData={mockData} classicCocktailData={classicCocktailData} />
+          <PictureCard cardData={mockData} classicModalData={classicCocktailData} />
         </Grid>
       </Grid> */}
     <CocktailCard cardData={testData} />

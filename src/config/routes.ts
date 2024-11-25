@@ -13,7 +13,7 @@ interface RouteType {
 
 const routes: RouteType[] = [
   {
-    path: "/cocktail/:id",
+    path: "/cocktails/:name",
     component: DynamicPage, // Use the DynamicPage component directly
     name: "Dynamic Page",
     protected: false,

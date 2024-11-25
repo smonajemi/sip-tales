@@ -1,5 +1,15 @@
 import { styled } from '@mui/material/styles';
-import { Card, CardContent, Typography, Box, AvatarGroup, Avatar, FormControl, OutlinedInput, InputAdornment, IconButton, Chip, CardMedia } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  FormControl,
+  OutlinedInput,
+  InputAdornment,
+  Chip,
+  CardMedia,
+} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import * as React from 'react';
 import { SearchRounded as SearchRoundedIcon } from '@mui/icons-material'
@@ -95,11 +105,9 @@ const CocktailContent: React.FC<CocktailContentProps> = ({ isLoggedIn }) => {
 
 
   const handleCardClick = (data: any, id: string) => {
-    // if (!isLoggedIn) {
-    //   setSnackbarOpen(true); // Always set to true on card click
-    // }
     if (data) {
-      navigate(`/cocktail/${id}?name=${data.title}`, { state: { data } });
+      navigate(`/cocktails/${data.title}?id=${id}`, { state: { data: { ...data, id } } });
+      
     } else {
       alert('Data is null or undefined. Cannot navigate.');
     }

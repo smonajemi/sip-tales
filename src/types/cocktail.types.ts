@@ -15,4 +15,5 @@ export interface CocktailCardTypes {
     description: string;
     content?: React.ReactNode;
   }
-export type CocktailResponse = CocktailTypes[];
+  
+export type CocktailResponseTypes = CocktailTypes[];

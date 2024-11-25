@@ -1,16 +1,16 @@
 import { Card, Typography, CardMedia, styled, CardContent, Box, List, ListItem, Stack, Chip } from "@mui/material";
 import { FC, useRef, useEffect, useState } from "react";
-import { CocktailTypes } from "../../../types/cocktail.types";
 import Grid from "@mui/material/Grid2";
 import CustomModal from "../../../components/CustomModal";
+import { CocktailTypes } from "../../../types";
 
-interface CustomSliderProps {
+interface PictureCardProps {
   cardData: CocktailTypes[];
   autoPlay?: number;
   cardStyles?: object;
   mediaStyles?: object;
   contentStyles?: object;
-  classicCocktailData: CocktailTypes[];
+  classicModalData: CocktailTypes[];
 }
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -42,10 +42,10 @@ const StyledCardContent = styled(CardContent)({
   },
 });
 
-const CustomSlider: FC<CustomSliderProps> = ({
+const PictureCard: FC<PictureCardProps> = ({
   autoPlay = 0,
   cardData,
-  classicCocktailData,
+  classicModalData,
   cardStyles = {},
   mediaStyles = {},
   contentStyles = {},
@@ -59,7 +59,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
   const handleBlur = () => setFocusedCardIndex(null);
 
   const handleSimilarDrinkClick = (drinkName: string) => {
-    const similarDrink = classicCocktailData.find(drink => drink.name === drinkName);
+    const similarDrink = classicModalData.find(drink => drink.name === drinkName);
     if (similarDrink) {
       setSelectedCocktail(similarDrink);
       setIsModalOpen(true);
@@ -184,5 +184,5 @@ const CustomSlider: FC<CustomSliderProps> = ({
   );
 };
 
-export default CustomSlider;
+export default PictureCard;
 

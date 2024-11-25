@@ -1,29 +1,33 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { LocalBar as LocalBarIcon } from "@mui/icons-material"
 import { useNavigate } from "react-router-dom";
 import { useResponsiveness } from "../../../components/hooks/useResponsiveness";
 import { useState } from "react";
-import { CocktailCardTypes } from "../../../types";
+import { CocktailCardTypes, PageTypes } from "../../../types";
+import CustomIcon from "../../../components/CustomIcon";
 
 interface CocktailCardProps {
   cardData: {
     title: string;
+    description: string;
+    content: string;
+    imageUrl: string;
     url: string;
+    iconName: string;
   }[];
 }
 
 const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
   const navigate = useNavigate();
   const {isDevice} = useResponsiveness()
-  const [isCocktailCard, setCocktailCard] = useState<CocktailCardTypes | null>(null);
-  const handleCocktailCard = (data: any, id: number) => {
+  const handleCocktailCard = (data: PageTypes, id: number) => {
     if (data) {
-      navigate(`/cocktail/${id}`, { state: { data } });
+      navigate(`${data?.url}?id=${id}`, { state: { data: { ...data, id } } }); 
     } else {
       alert('Data is null or undefined. Cannot navigate.');
     }
   };
+  
   return (
     <Grid
     container
@@ -57,7 +61,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
             background: '#121212'
           }}
           onClick={() => {
-            handleCocktailCard({ title: card.title, content: `Content for ${card.title}` }, index);
+            handleCocktailCard(card ,index);
           }}
         >
           <CardContent
@@ -79,12 +83,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
               justifyContent="center"
             >
               {/* Icon positioned above the title */}
-              <Grid>
-                <LocalBarIcon
-                  fontSize={isDevice ? "small" : "large"} // Smaller icon size for mobile
-                  sx={{ color: "primary.dark" }}
-                />
-              </Grid>
+              <Grid><CustomIcon name={card?.iconName} isDevice={false} />       </Grid>
   
               {/* Title aligned below the icon */}
               <Grid sx={{ mt: 1 }}>
@@ -109,7 +108,6 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cardData }) => {
       </Grid>
     ))}
   </Grid>
-  
   );
 };
 

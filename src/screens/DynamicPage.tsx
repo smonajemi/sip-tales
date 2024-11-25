@@ -1,23 +1,79 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import { PageTypes } from "../types";
 
-const DynamicPage = () => {
+
+// Define the type for the data prop
+const DynamicPage: React.FC = () => {
   const location = useLocation();
-  const { data } = location.state || {};
+  const { data }: { data?: PageTypes } = location.state || {};
 
-  return !data ? (<Typography variant="h6">No data available</Typography>) :
-    (<Container maxWidth="md">
+  if (!data) {
+    return (
+      <Container maxWidth="md">
+        <Typography variant="h6" align="center" sx={{ marginTop: 4 }}>
+          No data available
+        </Typography>
+      </Container>
+    );
+  }
+
+  return (
+    <Container maxWidth="md">
       <Box sx={{ padding: 3 }}>
-        <Typography variant="h3" gutterBottom>
-          {data?.title}
+        {/* Display image if available */}
+        {data.imageUrl && (
+          <Box sx={{ textAlign: "center", marginBottom: 3 }}>
+            <img
+              src={data.imageUrl}
+              alt={data.title}
+              style={{ maxWidth: "100%", borderRadius: "8px" }}
+            />
+          </Box>
+        )}
+
+        {/* Title */}
+        <Typography variant="h3" gutterBottom align="center" sx={{ fontWeight: 600 }}>
+          {data.title}
         </Typography>
-        <Typography variant="body1" paragraph>
-          {data?.description}
+
+        {/* Description */}
+        <Typography
+          variant="body1"
+          paragraph
+          sx={{
+            marginBottom: 3,
+            color: "text.secondary",
+            fontSize: "1.1rem",
+            lineHeight: 1.8,
+          }}
+        >
+          {data.description}
         </Typography>
-        <Box>{data.content || "No content available"}</Box>
+
+        {/* Content */}
+        {data.content ? (
+          <Typography
+            variant="body2"
+            component="div"
+            sx={{
+              lineHeight: 1.8,
+              fontSize: "1rem",
+              whiteSpace: "pre-line",
+              color: "text.primary",
+            }}
+          >
+            {data.content}
+          </Typography>
+        ) : (
+          <Typography variant="body2" color="text.secondary">
+            No content available
+          </Typography>
+        )}
       </Box>
-    </Container>)
+    </Container>
+  );
 };
 
 export default DynamicPage;
