@@ -66,7 +66,7 @@ export const navigationCustomizations: Components<Theme> = {
       root: ({ theme }) => ({
         borderRadius: (theme.vars || theme).shape.borderRadius,
         border: '1px solid',
-        borderColor: gray[200],
+        borderColor: gray[600],
         backgroundColor: (theme.vars || theme).palette.background.paper,
         boxShadow: `inset 0 1px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 1px hsla(220, 35%, 90%, 0.5)`,
         '&:hover': {
@@ -196,7 +196,7 @@ export const navigationCustomizations: Components<Theme> = {
         ':hover': {
           color: (theme.vars || theme).palette.text.primary,
           backgroundColor: gray[100],
-          borderColor: gray[200],
+          borderColor: gray[600],
         },
         [`&.${tabClasses.selected}`]: {
           color: gray[900],

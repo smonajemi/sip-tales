@@ -115,14 +115,14 @@ export const inputsCustomizations: Components<Theme> = {
             style: {
               color: (theme.vars || theme).palette.text.primary,
               border: '1px solid',
-              borderColor: gray[200],
+              borderColor: gray[600],
               backgroundColor: alpha(gray[50], 0.3),
               '&:hover': {
                 backgroundColor: gray[100],
                 borderColor: gray[300],
               },
               '&:active': {
-                backgroundColor: gray[200],
+                backgroundColor: gray[600],
               },
               ...theme.applyStyles('dark', {
                 backgroundColor: gray[800],
@@ -180,7 +180,7 @@ export const inputsCustomizations: Components<Theme> = {
                 backgroundColor: gray[100],
               },
               '&:active': {
-                backgroundColor: gray[200],
+                backgroundColor: gray[600],
               },
               ...theme.applyStyles('dark', {
                 color: gray[50],
@@ -231,14 +231,14 @@ export const inputsCustomizations: Components<Theme> = {
         letterSpacing: 0,
         color: (theme.vars || theme).palette.text.primary,
         border: '1px solid ',
-        borderColor: gray[200],
+        borderColor: gray[600],
         backgroundColor: alpha(gray[50], 0.3),
         '&:hover': {
           backgroundColor: gray[100],
           borderColor: gray[300],
         },
         '&:active': {
-          backgroundColor: gray[200],
+          backgroundColor: gray[600],
         },
         ...theme.applyStyles('dark', {
           backgroundColor: gray[800],

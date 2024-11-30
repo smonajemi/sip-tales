@@ -177,7 +177,7 @@ const Features: React.FC = () => {
           gap: 2,
         }}
       >
-        <div>
+        <Box>
           <Box
             sx={{
               display: { xs: 'none', sm: 'flex' },
@@ -237,7 +237,7 @@ const Features: React.FC = () => {
             handleItemClick={handleItemClick}
             selectedFeature={selectedFeature}
           />
-        </div>
+        </Box>
         <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },

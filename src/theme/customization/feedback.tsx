@@ -36,7 +36,7 @@ export const feedbackCustomizations: Components<Theme> = {
       root: ({ theme }) => ({
         height: 8,
         borderRadius: 8,
-        backgroundColor: gray[200],
+        backgroundColor: gray[600],
         ...theme.applyStyles('dark', {
           backgroundColor: gray[800],
         }),
