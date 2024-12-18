@@ -9,8 +9,8 @@ import CustomIcon from "../../../components/CustomIcon";
 interface CocktailCardProps {
   cardData: {
     title: string;
-    description: string;
-    content: string;
+    description?: string;
+    content?: string;
     imageUrl: string;
     url: string;
     iconName: string;

@@ -9,15 +9,23 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Suspense fallback={<CustomLoader message="Loading..." />}>
-        <Container maxWidth="lg" style={{ position: 'relative' }}>
-          <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={<route.component />} />
-            ))}
-          </Routes>
-        </Container>
-      </Suspense>
+      <Container maxWidth="lg" style={{ position: 'relative' }}>
+        <Routes>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Suspense fallback={<CustomLoader showProgress={true} />}>
+                  <route.component />
+                </Suspense>
+              }
+            />
+
+          ))}
+
+        </Routes>
+      </Container>
     </ThemeProvider>
   );
 }

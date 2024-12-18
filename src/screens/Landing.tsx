@@ -83,7 +83,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
   }, [setLoading]);
 
   if (loading) {
-    return <CustomLoader message="Loading Page..." />;
+    return <CustomLoader />;
   }
 
   return (
@@ -97,9 +97,9 @@ const LandingPage: React.FC<LandingPageProps> = ({
         sx={{ display: 'flex', flexDirection: 'column', my: 10, gap: 4 }}
       >
         <CocktailContent isLoggedIn={true} />
-        <Features />
+        {/* <Features /> */}
         {/* <Testimonials /> */}
-        <Highlights isDevice={isDevice} listItems={listItems} />
+        {/* <Highlights isDevice={isDevice} listItems={listItems} /> */}
         {/* <Pricing /> */}
         {/* <CocktailBlog /> */}
         <Footer handleSmoothScroll={handleSmoothScroll} />

@@ -87,10 +87,8 @@ const capitalize = (text: string | undefined): string => {
 const testData: PageTypes[] = [
   {
     title: 'Cocktail Finder',
-    description: 'Find your favorite cocktails.',
-    content: 'A tool to search and discover cocktails with detailed recipes.',
     imageUrl: heroImages[2],
-    url: '/cocktails/find',
+    url: '/findCocktail',
     iconName: 'search', // Example icon name
   },
   {
@@ -103,10 +101,8 @@ const testData: PageTypes[] = [
   },
   {
     title: 'AI Cocktail',
-    description: 'AI-powered cocktail suggestions.',
-    content: 'Get personalized cocktail recommendations based on your preferences.',
     imageUrl: heroImages[5],
-    url: '/cocktails/aicocktails',
+    url: '/createCocktail',
     iconName: 'robot', // Example icon name
   },
   {
